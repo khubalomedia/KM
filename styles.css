@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0b;
+  color: white;
+}
+
+/* HEADER */
+header {
+  padding: 20px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* HERO */
+.hero {
+  padding: 40px 20px;
+  background: linear-gradient(to right, #000, #111);
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+/* ROWS */
+.rows {
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
+}
+
+/* VIDEO CARD */
+.video-card {
+  min-width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.video-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.video-card p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.video-card:hover {
+  transform: scale(1.08);
+}
