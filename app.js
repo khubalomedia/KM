@@ -1,56 +1,70 @@
 const API_KEY = "AIzaSyD6o4Zwpt0Qim-6lLdJ4Ti0gUWJbrMwk-Y";
 const CHANNEL_ID = "UC5reF0zkdOnB3GEpVqNJfHw";
 
-// PLAYLISTS
+/* PLAYLISTS */
+
 const playlists = {
+
+  home: "PL8W_paC7-AOtnMN3II9_ukOAeNqBUZsy5",
+
   talk: "PL8W_paC7-AOtTlt5kzJXexdirvM5HGIHf",
+
   cartoons: "PL8W_paC7-AOuHLHtxjVGMRaeEVFdqpoix",
+
   musicvideos: "PL8W_paC7-AOs-YVLrcN1rw_MhozUIoESZ",
+
   music: "PL8W_paC7-AOvTL0ZF6iSiZhYxpjV1uVGD"
 };
 
-// GLOBAL PLAYER STATE
-let currentPlaylist = [];
-let currentIndex = 0;
+/* LOAD */
 
-// LOAD EVERYTHING
-function loadAll() {
-  loadPlaylist(playlists.talk, "row-talk");
-  loadPlaylist(playlists.cartoons, "row-cartoons");
-  loadPlaylist(playlists.musicvideos, "row-musicvideos");
-  loadPlaylist(playlists.music, "row-music");
+async function loadAll() {
+
+  for (const category in playlists) {
+    loadPlaylist(playlists[category], `row-${category}`);
+  }
+
   loadContinueWatching();
 }
 
-// FETCH PLAYLIST
+/* LOAD PLAYLIST */
+
 async function loadPlaylist(id, rowId) {
-  const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=20&playlistId=${id}&key=${API_KEY}`;
+
+  const url =
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=30&playlistId=${id}&key=${API_KEY}`;
 
   try {
+
     const res = await fetch(url);
+
     const data = await res.json();
 
     displayVideos(data.items, rowId);
+
   } catch (err) {
-    console.error("Error loading playlist:", err);
+
+    console.log(err);
+
   }
+
 }
 
-// DISPLAY VIDEOS
+/* DISPLAY VIDEOS */
+
 function displayVideos(videos, rowId) {
+
   const row = document.getElementById(rowId);
+
   row.innerHTML = "";
 
-  const playlistArray = videos.map(v => ({
-    id: v.snippet.resourceId.videoId,
-    title: v.snippet.title
-  }));
+  videos.forEach(video => {
 
-  videos.forEach((video, index) => {
     const videoId = video.snippet.resourceId.videoId;
 
     const card = document.createElement("div");
-    card.classList.add("video-card");
+
+    card.className = "video-card";
 
     card.innerHTML = `
       <img src="${video.snippet.thumbnails.medium.url}">
@@ -58,48 +72,66 @@ function displayVideos(videos, rowId) {
     `;
 
     card.onclick = () => {
-      currentPlaylist = playlistArray;
-      currentIndex = index;
-
-      saveLastVideo(videoId, video.snippet.title);
 
       playVideo(videoId);
-      renderUpNext();
+
+      saveLastVideo(
+        videoId,
+        video.snippet.title
+      );
+
     };
 
     row.appendChild(card);
+
   });
+
 }
 
-// PLAY VIDEO
+/* PLAY VIDEO */
+
 function playVideo(videoId) {
+
   const player = document.getElementById("video-player");
 
-  player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+  player.src =
+    `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
-  document.getElementById("player-section").scrollIntoView({
+  window.scrollTo({
+    top: 0,
     behavior: "smooth"
   });
 
-  // Start checking for video end
-  startAutoNext();
 }
 
-// SAVE LAST VIDEO
+/* SAVE */
+
 function saveLastVideo(id, title) {
-  localStorage.setItem("lastVideo", JSON.stringify({ id, title }));
+
+  localStorage.setItem(
+    "lastVideo",
+    JSON.stringify({ id, title })
+  );
+
 }
 
-// CONTINUE WATCHING
+/* CONTINUE */
+
 function loadContinueWatching() {
-  const data = JSON.parse(localStorage.getItem("lastVideo"));
+
+  const data =
+    JSON.parse(localStorage.getItem("lastVideo"));
+
   if (!data) return;
 
-  const row = document.getElementById("row-continue");
+  const row =
+    document.getElementById("row-continue");
+
   row.innerHTML = "";
 
   const card = document.createElement("div");
-  card.classList.add("video-card");
+
+  card.className = "video-card";
 
   card.innerHTML = `
     <img src="https://img.youtube.com/vi/${data.id}/mqdefault.jpg">
@@ -111,72 +143,68 @@ function loadContinueWatching() {
   };
 
   row.appendChild(card);
+
 }
 
-// AUTO PLAY NEXT (simple timer-based)
-let autoNextInterval;
+/* CATEGORY SWITCHING */
 
-function startAutoNext() {
-  clearInterval(autoNextInterval);
+const buttons =
+  document.querySelectorAll(".category-btn");
 
-  // check every 2 seconds if video ended
-  autoNextInterval = setInterval(() => {
-    const iframe = document.getElementById("video-player");
+const sections =
+  document.querySelectorAll(".category-section");
 
-    // crude way: detect if video stopped (works decently)
-    try {
-      const src = iframe.src;
+buttons.forEach(button => {
 
-      // If user still watching, do nothing
-      // This is fallback since we don't use full YouTube API
-    } catch (e) {}
+  button.addEventListener("click", () => {
 
-  }, 2000);
-}
+    buttons.forEach(btn =>
+      btn.classList.remove("active")
+    );
 
-// MANUAL NEXT (triggered when user clicks or future upgrade)
-function playNext() {
-  if (currentIndex < currentPlaylist.length - 1) {
-    currentIndex++;
-    const next = currentPlaylist[currentIndex];
+    button.classList.add("active");
 
-    playVideo(next.id);
-    saveLastVideo(next.id, next.title);
-    renderUpNext();
-  }
-}
+    const category =
+      button.dataset.category;
 
-// UP NEXT UI
-function renderUpNext() {
-  let container = document.getElementById("up-next");
+    sections.forEach(section =>
+      section.classList.add("hidden")
+    );
 
-  if (!container) {
-    container = document.createElement("div");
-    container.id = "up-next";
-    document.getElementById("player-section").appendChild(container);
-  }
+    document
+      .getElementById(`section-${category}`)
+      .classList.remove("hidden");
 
-  container.innerHTML = "<h3>Up Next</h3>";
-
-  currentPlaylist.slice(currentIndex + 1, currentIndex + 6).forEach((video, i) => {
-    const item = document.createElement("div");
-    item.classList.add("video-card");
-
-    item.innerHTML = `
-      <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg">
-      <p>${video.title}</p>
-    `;
-
-    item.onclick = () => {
-      currentIndex = currentIndex + 1 + i;
-      playVideo(video.id);
-      saveLastVideo(video.id, video.title);
-      renderUpNext();
-    };
-
-    container.appendChild(item);
   });
-}
 
-// INIT
+});
+
+/* SEARCH */
+
+document
+  .getElementById("searchInput")
+  .addEventListener("input", function () {
+
+    const value =
+      this.value.toLowerCase();
+
+    const cards =
+      document.querySelectorAll(".video-card");
+
+    cards.forEach(card => {
+
+      const text =
+        card.innerText.toLowerCase();
+
+      card.style.display =
+        text.includes(value)
+          ? "block"
+          : "none";
+
+    });
+
+  });
+
+/* START */
+
 loadAll();

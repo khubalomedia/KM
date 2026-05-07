@@ -16,38 +16,85 @@
 </header>
 
 
-<section id="player-section">
-  <iframe 
-  id="video-player"
-  width="100%" 
-  height="400"
-  src=""
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-  referrerpolicy="strict-origin-when-cross-origin">
-</iframe>
-</section>
+<div class="layout">
 
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>Categories</h3>
 
-<section class="rows">
+    <button class="category-btn active" data-category="home">
+      Home
+    </button>
 
-<h2>Continue Watching</h2>
-<div id="row-continue" class="row"></div>
+    <button class="category-btn" data-category="talk">
+      Talk Shows
+    </button>
 
-<h2>Talk Shows</h2>
-<div id="row-talk" class="row"></div>
+    <button class="category-btn" data-category="cartoons">
+      Cartoons
+    </button>
 
-<h2>Cartoons</h2>
-<div id="row-cartoons" class="row"></div>
+    <button class="category-btn" data-category="musicvideos">
+      Music Videos
+    </button>
 
-<h2>Music Videos</h2>
-<div id="row-musicvideos" class="row"></div>
+    <button class="category-btn" data-category="music">
+      Music
+    </button>
+  </aside>
 
-<h2>Music</h2>
-<div id="row-music" class="row"></div>
+  <!-- MAIN -->
+  <main class="content">
 
-</section>
+    <!-- PLAYER -->
+    <section id="player-section">
+      <iframe
+        id="video-player"
+        src=""
+        allowfullscreen
+        allow="autoplay"
+      ></iframe>
+    </section>
+
+    <!-- CONTINUE -->
+    <section class="section">
+      <h2>Continue Watching</h2>
+      <div id="row-continue" class="video-grid"></div>
+    </section>
+
+    <!-- HOME -->
+    <section class="section category-section" id="section-home">
+      <h2>Home Videos</h2>
+      <div id="row-home" class="video-grid"></div>
+    </section>
+
+    <!-- TALK -->
+    <section class="section category-section hidden" id="section-talk">
+      <h2>Talk Shows</h2>
+      <div id="row-talk" class="video-grid"></div>
+    </section>
+
+    <!-- CARTOONS -->
+    <section class="section category-section hidden" id="section-cartoons">
+      <h2>Cartoons</h2>
+      <div id="row-cartoons" class="video-grid"></div>
+    </section>
+
+    <!-- MUSIC VIDEOS -->
+    <section class="section category-section hidden" id="section-musicvideos">
+      <h2>Music Videos</h2>
+      <div id="row-musicvideos" class="video-grid"></div>
+    </section>
+
+    <!-- MUSIC -->
+    <section class="section category-section hidden" id="section-music">
+      <h2>Music</h2>
+      <div id="row-music" class="video-grid"></div>
+    </section>
+
+  </main>
+
+</div>
 
 
 <section class="about">
