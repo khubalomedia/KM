@@ -1,39 +1,101 @@
-<section class="section">
-  <h2>Continue Watching</h2>
-  <div id="row-continue" class="video-grid"></div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<!-- HOME -->
-<section class="section category-section" id="section-home">
-  <h2>Home Videos</h2>
-  <div id="row-home" class="video-grid"></div>
-</section>
+<title>BaloTV</title>
 
-<!-- TALK -->
-<section class="section category-section hidden" id="section-talk">
-  <h2>Talk Shows</h2>
-  <div id="row-talk" class="video-grid"></div>
-</section>
+<link rel="stylesheet" href="styles.css">
+</head>
 
-<!-- CARTOONS -->
-<section class="section category-section hidden" id="section-cartoons">
-  <h2>Cartoons</h2>
-  <div id="row-cartoons" class="video-grid"></div>
-</section>
+<body>
 
-<!-- MUSIC VIDEOS -->
-<section class="section category-section hidden" id="section-musicvideos">
-  <h2>Music Videos</h2>
-  <div id="row-musicvideos" class="video-grid"></div>
-</section>
+<header class="topbar">
+  <div class="logo">BaloTV</div>
 
-<!-- MUSIC -->
-<section class="section category-section hidden" id="section-music">
-  <h2>Music</h2>
-  <div id="row-music" class="video-grid"></div>
-</section>
+  <div class="top-right">
+    <input type="text" placeholder="Search..." id="searchInput">
+  </div>
+</header>
 
-</main>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>Categories</h3>
+
+    <button class="category-btn active" data-category="home">
+      Home
+    </button>
+
+    <button class="category-btn" data-category="talk">
+      Talk Shows
+    </button>
+
+    <button class="category-btn" data-category="cartoons">
+      Cartoons
+    </button>
+
+    <button class="category-btn" data-category="musicvideos">
+      Music Videos
+    </button>
+
+    <button class="category-btn" data-category="music">
+      Music
+    </button>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="content">
+
+    <!-- PLAYER -->
+    <section id="player-section">
+      <iframe
+        id="video-player"
+        src=""
+        allowfullscreen
+        allow="autoplay"
+      ></iframe>
+    </section>
+
+    <!-- CONTINUE -->
+    <section class="section">
+      <h2>Continue Watching</h2>
+      <div id="row-continue" class="video-grid"></div>
+    </section>
+
+    <!-- HOME -->
+    <section class="section category-section" id="section-home">
+      <h2>Home Videos</h2>
+      <div id="row-home" class="video-grid"></div>
+    </section>
+
+    <!-- TALK -->
+    <section class="section category-section hidden" id="section-talk">
+      <h2>Talk Shows</h2>
+      <div id="row-talk" class="video-grid"></div>
+    </section>
+
+    <!-- CARTOONS -->
+    <section class="section category-section hidden" id="section-cartoons">
+      <h2>Cartoons</h2>
+      <div id="row-cartoons" class="video-grid"></div>
+    </section>
+
+    <!-- MUSIC VIDEOS -->
+    <section class="section category-section hidden" id="section-musicvideos">
+      <h2>Music Videos</h2>
+      <div id="row-musicvideos" class="video-grid"></div>
+    </section>
+
+    <!-- MUSIC -->
+    <section class="section category-section hidden" id="section-music">
+      <h2>Music</h2>
+      <div id="row-music" class="video-grid"></div>
+    </section>
+
+  </main>
 
 </div>
 
