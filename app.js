@@ -233,11 +233,11 @@ const authTitle =
 const switchAuth =
   document.getElementById("switchAuth");
 
-/* OPEN LOGIN */
+/* LOGIN BUTTON */
 
 document
   .getElementById("loginBtn")
-  .onclick = () => {
+  .addEventListener("click", () => {
 
     authModal.classList.remove("hidden");
 
@@ -245,13 +245,13 @@ document
 
     isLogin = true;
 
-};
+  });
 
-/* OPEN REGISTER */
+/* REGISTER BUTTON */
 
 document
   .getElementById("registerBtn")
-  .onclick = () => {
+  .addEventListener("click", () => {
 
     authModal.classList.remove("hidden");
 
@@ -259,11 +259,25 @@ document
 
     isLogin = false;
 
-};
+  });
 
-/* SWITCH LOGIN/REGISTER */
+/* BOTTOM REGISTER BUTTON */
 
-switchAuth.onclick = () => {
+document
+  .getElementById("bottomRegisterBtn")
+  .addEventListener("click", () => {
+
+    authModal.classList.remove("hidden");
+
+    authTitle.innerText = "Register";
+
+    isLogin = false;
+
+  });
+
+/* SWITCH */
+
+switchAuth.addEventListener("click", () => {
 
   isLogin = !isLogin;
 
@@ -275,19 +289,27 @@ switchAuth.onclick = () => {
       ? "Don't have an account? Register"
       : "Already have an account? Login";
 
-};
+});
 
 /* SUBMIT */
 
 document
   .getElementById("authSubmit")
-  .onclick = async () => {
+  .addEventListener("click", async () => {
 
     const email =
-      document.getElementById("email").value;
+      document.getElementById("email").value.trim();
 
     const password =
-      document.getElementById("password").value;
+      document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+
+      alert("Please fill in all fields");
+
+      return;
+
+    }
 
     try {
 
@@ -298,7 +320,7 @@ document
           password
         );
 
-        alert("Logged in!");
+        alert("Logged in successfully!");
 
       } else {
 
@@ -307,7 +329,7 @@ document
           password
         );
 
-        alert("Account created!");
+        alert("Account created successfully!");
 
       }
 
@@ -315,33 +337,36 @@ document
 
     } catch (error) {
 
+      console.error(error);
+
       alert(error.message);
 
     }
 
-};
+  });
 
 /* FORGOT PASSWORD */
 
 document
   .getElementById("forgotPassword")
-  .onclick = async () => {
+  .addEventListener("click", async () => {
 
     const email =
-      document.getElementById("email").value;
+      document.getElementById("email").value.trim();
 
     if (!email) {
+
       alert("Enter your email");
+
       return;
+
     }
 
     try {
 
       await auth.sendPasswordResetEmail(email);
 
-      alert(
-        "Password reset email sent!"
-      );
+      alert("Password reset email sent!");
 
     } catch (error) {
 
@@ -349,16 +374,25 @@ document
 
     }
 
-};
+  });
 
+/* AUTH STATE */
 
-auth.onAuthStateChanged(user => {
+const authButtons =
+  document.querySelector(".auth-buttons");
 
-  if (user) {
+if (user) {
 
-    document.querySelector(".logo").innerText =
-      `BaloTV • ${user.email}`;
+  document.querySelector(".logo").innerText =
+    `BaloTV • ${user.email}`;
 
-  }
+  authButtons.style.display = "none";
 
-});
+} else {
+
+  document.querySelector(".logo").innerText =
+    "BaloTV";
+
+  authButtons.style.display = "flex";
+
+}

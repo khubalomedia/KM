@@ -112,6 +112,29 @@
       <div id="row-music" class="video-grid"></div>
     </section>
 
+
+<!-- ABOUT / REGISTER CTA -->
+<section class="about-site">
+  <h2>Welcome To BaloTV</h2>
+
+  <p>
+    BaloTV brings you the best talk shows, cartoons,
+    music videos, entertainment and trending content
+    all in one place.
+  </p>
+
+  <p>
+    Create a free account to unlock the full experience,
+    save your favorite content and become part of the
+    BaloTV community.
+  </p>
+
+  <button id="bottomRegisterBtn">
+    Join BaloTV Now
+  </button>
+</section>
+
+
   </main>
 
 </div>
@@ -144,6 +167,43 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 </script>
+
+
+<!-- AUTH MODAL -->
+
+<div id="authModal" class="auth-modal hidden">
+
+  <div class="auth-box">
+
+    <h2 id="authTitle">Login</h2>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
+
+    <button id="authSubmit">
+      Continue
+    </button>
+
+    <p id="switchAuth">
+      Don't have an account? Register
+    </p>
+
+    <p id="forgotPassword">
+      Forgot Password?
+    </p>
+
+  </div>
+
+</div>
 
 
 <script src="app.js"></script>
