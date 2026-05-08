@@ -73,7 +73,10 @@ function displayVideos(videos, rowId) {
 
     card.onclick = () => {
 
-      playVideo(videoId);
+      playVideo(
+        videoId,
+        video.snippet.title,
+        video.snippet.description);
 
       saveLastVideo(
         videoId,
@@ -90,12 +93,19 @@ function displayVideos(videos, rowId) {
 
 /* PLAY VIDEO */
 
-function playVideo(videoId) {
+function playVideo(videoId, title = "", description = "") {
 
-  const player = document.getElementById("video-player");
+  const player =
+    document.getElementById("video-player");
 
   player.src =
     `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
+  document.getElementById("video-title").innerText =
+    title;
+
+  document.getElementById("video-description").innerText =
+    description || "No description available.";
 
   window.scrollTo({
     top: 0,
@@ -208,3 +218,147 @@ document
 /* START */
 
 loadAll();
+
+
+/* AUTH SYSTEM */
+
+let isLogin = true;
+
+const authModal =
+  document.getElementById("authModal");
+
+const authTitle =
+  document.getElementById("authTitle");
+
+const switchAuth =
+  document.getElementById("switchAuth");
+
+/* OPEN LOGIN */
+
+document
+  .getElementById("loginBtn")
+  .onclick = () => {
+
+    authModal.classList.remove("hidden");
+
+    authTitle.innerText = "Login";
+
+    isLogin = true;
+
+};
+
+/* OPEN REGISTER */
+
+document
+  .getElementById("registerBtn")
+  .onclick = () => {
+
+    authModal.classList.remove("hidden");
+
+    authTitle.innerText = "Register";
+
+    isLogin = false;
+
+};
+
+/* SWITCH LOGIN/REGISTER */
+
+switchAuth.onclick = () => {
+
+  isLogin = !isLogin;
+
+  authTitle.innerText =
+    isLogin ? "Login" : "Register";
+
+  switchAuth.innerText =
+    isLogin
+      ? "Don't have an account? Register"
+      : "Already have an account? Login";
+
+};
+
+/* SUBMIT */
+
+document
+  .getElementById("authSubmit")
+  .onclick = async () => {
+
+    const email =
+      document.getElementById("email").value;
+
+    const password =
+      document.getElementById("password").value;
+
+    try {
+
+      if (isLogin) {
+
+        await auth.signInWithEmailAndPassword(
+          email,
+          password
+        );
+
+        alert("Logged in!");
+
+      } else {
+
+        await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+
+        alert("Account created!");
+
+      }
+
+      authModal.classList.add("hidden");
+
+    } catch (error) {
+
+      alert(error.message);
+
+    }
+
+};
+
+/* FORGOT PASSWORD */
+
+document
+  .getElementById("forgotPassword")
+  .onclick = async () => {
+
+    const email =
+      document.getElementById("email").value;
+
+    if (!email) {
+      alert("Enter your email");
+      return;
+    }
+
+    try {
+
+      await auth.sendPasswordResetEmail(email);
+
+      alert(
+        "Password reset email sent!"
+      );
+
+    } catch (error) {
+
+      alert(error.message);
+
+    }
+
+};
+
+
+auth.onAuthStateChanged(user => {
+
+  if (user) {
+
+    document.querySelector(".logo").innerText =
+      `BaloTV • ${user.email}`;
+
+  }
+
+});

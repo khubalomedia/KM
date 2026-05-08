@@ -17,6 +17,12 @@
   <div class="top-right">
     <input type="text" placeholder="Search..." id="searchInput">
   </div>
+
+  <div class="auth-buttons">
+    <button id="loginBtn">Login</button>
+    <button id="registerBtn">Register</button>
+  </div>
+  
 </header>
 
 <div class="layout">
@@ -57,7 +63,18 @@
         allowfullscreen
         allow="autoplay"
       ></iframe>
+      
+        <!-- VIDEO INFO -->
+<div class="video-info">
+  <h1 id="video-title">Select a video</h1>
+  <p id="video-description">
+    Video description will appear here.
+  </p>
+</div>
+
     </section>
+
+
 
     <!-- CONTINUE -->
     <section class="section">
@@ -98,6 +115,36 @@
   </main>
 
 </div>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+
+  apiKey: "AIzaSyCqKN8k80ZGxUZdfWfatPui5xib-s1VOaY",
+
+  authDomain: "balotv-d9c1d.firebaseapp.com",
+
+  projectId: "balotv-d9c1d",
+
+  storageBucket: "balotv-d9c1d.firebasestorage.app",
+
+  messagingSenderId: "1:96925959779:web:ed8cef5de90a0f410ada56",
+
+  appId: "PASTE_APP_ID"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+</script>
+
 
 <script src="app.js"></script>
 
