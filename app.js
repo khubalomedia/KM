@@ -13,7 +13,7 @@ const playlists = {
 
   musicvideos: "PL8W_paC7-AOs-YVLrcN1rw_MhozUIoESZ",
 
-  
+  music: "PL8W_paC7-AOvTL0ZF6iSiZhYxpjV1uVGD"
 };
 
 /* LOAD */
@@ -235,12 +235,7 @@ document
 loadAll();
 
 
-
-<>
-  /* AUTH SYSTEM */
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script></>
-
+/* AUTH SYSTEM */
 
 let isLogin = true;
 
@@ -425,29 +420,3 @@ auth.onAuthStateChanged(user => {
   }
 
 });
-
-
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyD6o4Zwpt0Qim-6lLdJ4Ti0gUWJbrMwk-Y",
-
-  authDomain: "balotv-d9c1d.firebaseapp.com",
-
-  projectId: "balotv-d9c1d",
-
-  storageBucket: "balotv-d9c1d.firebasestorage.app",
-
-  messagingSenderId: "96925959779",
-
-  appId: "1:96925959779:web:ed8cef5de90a0f410ada56"
-
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-
-auth.setPersistence(
-  firebase.auth.Auth.Persistence.LOCAL
-);
