@@ -31,16 +31,27 @@ async function loadAll() {
 
 async function loadPlaylist(id, rowId) {
 
-  const url =
-    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=30&playlistId=${id}&key=${API_KEY}`;
+  let allVideos = [];
+  let nextPageToken = "";
 
   try {
 
-    const res = await fetch(url);
+    do {
 
-    const data = await res.json();
+      const url =
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${id}&pageToken=${nextPageToken}&key=${API_KEY}`;
 
-    displayVideos(data.items, rowId);
+      const res = await fetch(url);
+
+      const data = await res.json();
+
+      allVideos.push(...data.items);
+
+      nextPageToken = data.nextPageToken || "";
+
+    } while (nextPageToken);
+
+    displayVideos(allVideos, rowId);
 
   } catch (err) {
 
@@ -60,7 +71,10 @@ function displayVideos(videos, rowId) {
 
   videos.forEach(video => {
 
-    const videoId = video.snippet.resourceId.videoId;
+    
+if (!video.snippet || !video.snippet.resourceId) return;
+
+const videoId = video.snippet.resourceId.videoId;
 
     const card = document.createElement("div");
 
