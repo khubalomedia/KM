@@ -13,7 +13,7 @@ const playlists = {
 
   musicvideos: "PL8W_paC7-AOs-YVLrcN1rw_MhozUIoESZ",
 
-  music: "PL8W_paC7-AOvTL0ZF6iSiZhYxpjV1uVGD"
+  
 };
 
 /* LOAD */
@@ -235,7 +235,12 @@ document
 loadAll();
 
 
-/* AUTH SYSTEM */
+
+<>
+  /* AUTH SYSTEM */
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script></>
+
 
 let isLogin = true;
 
@@ -420,3 +425,75 @@ auth.onAuthStateChanged(user => {
   }
 
 });
+
+
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyD6o4Zwpt0Qim-6lLdJ4Ti0gUWJbrMwk-Y",
+
+  authDomain: "balotv-d9c1d.firebaseapp.com",
+
+  projectId: "balotv-d9c1d",
+
+  storageBucket: "balotv-d9c1d.firebasestorage.app",
+
+  messagingSenderId: "96925959779",
+
+  appId: "1:96925959779:web:ed8cef5de90a0f410ada56"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+auth.setPersistence(
+  firebase.auth.Auth.Persistence.LOCAL
+);
+
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+}
+
+
+
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  showInstallButton(); // we create this next
+});
+
+function showInstallButton() {
+  const btn = document.createElement("button");
+  btn.innerText = "📲 Install BaloTV App";
+  btn.style.position = "fixed";
+  btn.style.bottom = "20px";
+  btn.style.right = "20px";
+  btn.style.padding = "12px 16px";
+  btn.style.background = "#000";
+  btn.style.color = "#fff";
+  btn.style.border = "1px solid #fff";
+  btn.style.borderRadius = "8px";
+  btn.style.zIndex = "9999";
+
+  document.body.appendChild(btn);
+
+  btn.addEventListener("click", async () => {
+    btn.style.display = "none";
+
+    deferredPrompt.prompt();
+
+    const choice = await deferredPrompt.userChoice;
+
+    if (choice.outcome === "accepted") {
+      console.log("User installed app");
+    }
+
+    deferredPrompt = null;
+  });
+}
