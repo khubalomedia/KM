@@ -1,4 +1,5 @@
 const API_KEY = "AIzaSyD6o4Zwpt0Qim-6lLdJ4Ti0gUWJbrMwk-Y";
+const CHANNEL_ID = "UC5reF0zkdOnB3GEpVqNJfHw";
 
 /* PLAYLISTS */
 
@@ -13,21 +14,20 @@ const playlists = {
   musicvideos: "PL8W_paC7-AOs-YVLrcN1rw_MhozUIoESZ",
 
   music: "PL8W_paC7-AOvTL0ZF6iSiZhYxpjV1uVGD"
-
 };
+
+/* LOAD */
 
 async function loadAll() {
 
   for (const category in playlists) {
-
-    loadPlaylist(
-      playlists[category],
-      `row-${category}`
-    );
-
+    loadPlaylist(playlists[category], `row-${category}`);
   }
 
+  loadContinueWatching();
 }
+
+/* LOAD PLAYLIST */
 
 async function loadPlaylist(id, rowId) {
 
@@ -50,6 +50,8 @@ async function loadPlaylist(id, rowId) {
 
 }
 
+/* DISPLAY VIDEOS */
+
 function displayVideos(videos, rowId) {
 
   const row = document.getElementById(rowId);
@@ -58,8 +60,7 @@ function displayVideos(videos, rowId) {
 
   videos.forEach(video => {
 
-    const videoId =
-      video.snippet.resourceId.videoId;
+    const videoId = video.snippet.resourceId.videoId;
 
     const card = document.createElement("div");
 
@@ -78,6 +79,11 @@ function displayVideos(videos, rowId) {
         video.snippet.description
       );
 
+      saveLastVideo(
+        videoId,
+        video.snippet.title
+      );
+
     };
 
     row.appendChild(card);
@@ -86,11 +92,9 @@ function displayVideos(videos, rowId) {
 
 }
 
-function playVideo(
-  videoId,
-  title = "",
-  description = ""
-) {
+/* PLAY VIDEO */
+
+function playVideo(videoId, title = "", description = "") {
 
   const player =
     document.getElementById("video-player");
@@ -98,19 +102,58 @@ function playVideo(
   player.src =
     `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
-  document.getElementById(
-    "video-title"
-  ).innerText = title;
+  document.getElementById("video-title").innerText =
+    title;
 
-  document.getElementById(
-    "video-description"
-  ).innerText =
+  document.getElementById("video-description").innerText =
     description || "No description available.";
 
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
+
+}
+
+/* SAVE */
+
+function saveLastVideo(id, title) {
+
+  localStorage.setItem(
+    "lastVideo",
+    JSON.stringify({ id, title })
+  );
+
+}
+
+/* CONTINUE */
+
+function loadContinueWatching() {
+
+  const data =
+    JSON.parse(localStorage.getItem("lastVideo"));
+
+  if (!data) return;
+
+  const row =
+    document.getElementById("row-continue");
+
+  row.innerHTML = "";
+
+  const card = document.createElement("div");
+
+  card.className = "video-card";
+
+  card.innerHTML = `
+    <img src="https://img.youtube.com/vi/${data.id}/mqdefault.jpg">
+    <p>${data.title}</p>
+  `;
+
+  card.onclick = () => {
+    playVideo(data.id);
+  };
+
+  row.appendChild(card);
 
 }
 
@@ -173,7 +216,10 @@ document
 
   });
 
+/* START */
+
 loadAll();
+
 
 /* AUTH SYSTEM */
 
@@ -188,6 +234,8 @@ const authTitle =
 const switchAuth =
   document.getElementById("switchAuth");
 
+/* LOGIN BUTTON */
+
 document
   .getElementById("loginBtn")
   .addEventListener("click", () => {
@@ -199,6 +247,8 @@ document
     isLogin = true;
 
   });
+
+/* REGISTER BUTTON */
 
 document
   .getElementById("registerBtn")
@@ -212,6 +262,8 @@ document
 
   });
 
+/* BOTTOM REGISTER BUTTON */
+
 document
   .getElementById("bottomRegisterBtn")
   .addEventListener("click", () => {
@@ -223,6 +275,8 @@ document
     isLogin = false;
 
   });
+
+/* SWITCH */
 
 switchAuth.addEventListener("click", () => {
 
@@ -237,6 +291,8 @@ switchAuth.addEventListener("click", () => {
       : "Already have an account? Login";
 
 });
+
+/* SUBMIT */
 
 document
   .getElementById("authSubmit")
@@ -282,30 +338,70 @@ document
 
     } catch (error) {
 
+      console.error(error);
+
       alert(error.message);
 
     }
 
   });
 
-auth.onAuthStateChanged(user => {
+/* FORGOT PASSWORD */
 
-  const authButtons =
-    document.querySelector(".auth-buttons");
+document
+  .getElementById("forgotPassword")
+  .addEventListener("click", async () => {
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    if (!email) {
+
+      alert("Enter your email");
+
+      return;
+
+    }
+
+    try {
+
+      await auth.sendPasswordResetEmail(email);
+
+      alert("Password reset email sent!");
+
+    } catch (error) {
+
+      alert(error.message);
+
+    }
+
+  });
+
+/* AUTH STATE */
+
+auth.onAuthStateChanged(user => {
 
   if (user) {
 
     document.querySelector(".logo").innerText =
       `BaloTV • ${user.email}`;
 
-    authButtons.style.display = "none";
-
   } else {
 
     document.querySelector(".logo").innerText =
       "BaloTV";
 
-    authButtons.style.display = "flex";
+  }
+
+});
+
+
+auth.onAuthStateChanged(user => {
+
+  if (user) {
+
+    document.querySelector(".logo").innerText =
+      `BaloTV • ${user.email}`;
 
   }
 

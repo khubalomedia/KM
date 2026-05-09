@@ -22,7 +22,7 @@
     <button id="loginBtn">Login</button>
     <button id="registerBtn">Register</button>
   </div>
-  
+
 </header>
 
 <div class="layout">
@@ -63,8 +63,8 @@
         allowfullscreen
         allow="autoplay"
       ></iframe>
-      
-        <!-- VIDEO INFO -->
+
+<!-- VIDEO INFO -->
 <div class="video-info">
   <h1 id="video-title">Select a video</h1>
   <p id="video-description">
@@ -73,8 +73,6 @@
 </div>
 
     </section>
-
-
 
     <!-- CONTINUE -->
     <section class="section">
@@ -113,43 +111,44 @@
     </section>
 
 
-<!-- ABOUT / REGISTER CTA -->
-<section class="about-site">
-  <h2>Welcome To BaloTV</h2>
 
-  <p>
-    BaloTV brings you the best talk shows, cartoons,
-    music videos, entertainment and trending content
-    all in one place.
-  </p>
+    <section class="about-site">
 
-  <p>
-    Create a free account to unlock the full experience,
-    save your favorite content and become part of the
-    BaloTV community.
-  </p>
+      <h2>Enjoy Unlimited Entertainment</h2>
 
-  <button id="bottomRegisterBtn">
-    Join BaloTV Now
-  </button>
-</section>
+      <p>
+        BaloTV gives you instant access to talk shows,
+        cartoons, music videos and trending entertainment.
+      </p>
 
+      <p>
+        Watch freely as a guest or create a free account
+        to unlock the full BaloTV experience.
+      </p>
 
+      <button id="bottomRegisterBtn">
+        Create Free Account
+      </button>
+
+      <p class="guest-text">
+        You can continue watching without registering.
+      </p>
+
+    </section>
+
+    
   </main>
 
 </div>
 
-
-<!-- FIREBASE -->
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
 <script>
+
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCqKN8k80ZGxUZdfWfatPui5xib-s1VOaY",
+  apiKey: "AIzaSyD6o4Zwpt0Qim-6lLdJ4Ti0gUWJbrMwk-Y",
 
   authDomain: "balotv-d9c1d.firebaseapp.com",
 
@@ -157,53 +156,21 @@ const firebaseConfig = {
 
   storageBucket: "balotv-d9c1d.firebasestorage.app",
 
-  messagingSenderId: "1:96925959779:web:ed8cef5de90a0f410ada56",
+  messagingSenderId: "96925959779",
 
-  appId: "PASTE_APP_ID"
+  appId: "1:96925959779:web:ed8cef5de90a0f410ada56"
 
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+
+auth.setPersistence(
+  firebase.auth.Auth.Persistence.LOCAL
+);
+
 </script>
-
-
-<!-- AUTH MODAL -->
-
-<div id="authModal" class="auth-modal hidden">
-
-  <div class="auth-box">
-
-    <h2 id="authTitle">Login</h2>
-
-    <input
-      type="email"
-      id="email"
-      placeholder="Email"
-    >
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-    >
-
-    <button id="authSubmit">
-      Continue
-    </button>
-
-    <p id="switchAuth">
-      Don't have an account? Register
-    </p>
-
-    <p id="forgotPassword">
-      Forgot Password?
-    </p>
-
-  </div>
-
-</div>
 
 
 <script src="app.js"></script>
