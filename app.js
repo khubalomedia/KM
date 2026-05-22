@@ -236,10 +236,7 @@ loadAll();
 
 
 
-<>
-  /* AUTH SYSTEM */
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script></>
+
 
 
 let isLogin = true;
