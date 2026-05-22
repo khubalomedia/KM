@@ -9,6 +9,35 @@
 </head>
 <body>
 
+  <header class="topbar">
+
+    <!-- HAMBURGER MENU -->
+  
+    <div class="menu-btn" onclick="toggleMenu()">
+  
+      <span></span>
+      <span></span>
+      <span></span>
+  
+    </div>
+  
+    <!-- DROPDOWN MENU -->
+  
+    <div class="dropdown-menu" id="dropdownMenu">
+  
+      <a href="index.html">Home</a>
+  
+      <a href="about.html">Why BaloTV</a>
+  
+      <a href="terms.html">Terms</a>
+  
+    </div>
+  
+
+  
+  </header>   
+
+
   <header class="hero">
 
     <div class="overlay"></div>
@@ -163,6 +192,21 @@
     </p>
 
   </footer>
+
+
+  <script>
+
+    function toggleMenu(){
+    
+      document
+      .getElementById("dropdownMenu")
+      .classList
+      .toggle("active");
+    
+    }
+    
+    </script>
+
 
 </body>
 </html>

@@ -351,3 +351,95 @@ body {
     text-decoration:none;
     border-radius:5px;
     } 
+
+
+/* HAMBURGER MENU */
+
+.menu-btn{
+  width:40px;
+  height:30px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+  cursor:pointer;
+
+  margin-right:20px;
+
+  z-index:1002;
+}
+
+.menu-btn span{
+  width:100%;
+  height:4px;
+
+  background:#ff1a1a;
+
+  border-radius:10px;
+
+  transition:0.3s;
+}
+
+/* DROPDOWN MENU */
+
+.dropdown-menu{
+  position:absolute;
+
+  top:70px;
+  left:20px;
+
+  width:220px;
+
+  background:#111;
+
+  border:1px solid #222;
+
+  border-radius:20px;
+
+  padding:15px;
+
+  display:none;
+
+  flex-direction:column;
+
+  gap:15px;
+
+  z-index:1001;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.dropdown-menu.active{
+  display:flex;
+}
+
+.dropdown-menu a{
+  color:white;
+
+  text-decoration:none;
+
+  background:#1a1a1a;
+
+  padding:15px;
+
+  border-radius:12px;
+
+  font-weight:bold;
+
+  transition:0.3s;
+}
+
+.dropdown-menu a:hover{
+  background:#ff1a1a;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .dropdown-menu{
+    width:180px;
+  }
+
+}
