@@ -325,3 +325,21 @@ body {
   color: #888;
   font-size: 14px;
 }
+
+
+
+.logo img{
+  height:50px;
+  width:auto;
+}
+
+
+.continue-box{
+  margin-top:25px;
+  padding:20px;
+  background:#111;
+  border-radius:15px;
+  }
+
+
+ 

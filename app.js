@@ -494,3 +494,6 @@ function showInstallButton() {
     deferredPrompt = null;
   });
 }
+
+
+
