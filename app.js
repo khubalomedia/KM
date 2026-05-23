@@ -142,12 +142,6 @@ function playVideo(
   description = ""
 ){
 
-  /* SHOW PLAYER */
-
-  document
-    .getElementById("playerSection")
-    .classList.remove("hidden");
-
   const player =
     document.getElementById("video-player");
 
@@ -176,7 +170,7 @@ function playVideo(
     shortDescription ||
     "No description available.";
 
-  /* SAVE LAST PLAYED */
+  /* SAVE LAST PLAYED VIDEO */
 
   localStorage.setItem(
     "lastPlayedVideo",
@@ -186,8 +180,6 @@ function playVideo(
       description
     })
   );
-
-  /* SCROLL TO PLAYER */
 
   window.scrollTo({
     top:0,
@@ -355,17 +347,6 @@ document
   .addEventListener("click", playPrevious);
 
 
-
-
-/* HIDE PLAYER WHEN SWITCHING CATEGORY */
-
-document
-  .getElementById("playerSection")
-  .classList.add("hidden");
-
-
-
-  
 
 /* SAVE */
 
