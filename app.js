@@ -61,6 +61,11 @@ async function loadPlaylist(id, rowId) {
 
 }
 
+/* GLOBAL PLAYER STATE */
+
+let currentPlaylist = [];
+let currentIndex = 0;
+
 /* DISPLAY VIDEOS */
 
 function displayVideos(videos, rowId) {
@@ -69,23 +74,49 @@ function displayVideos(videos, rowId) {
 
   row.innerHTML = "";
 
-  videos.forEach(video => {
+  videos.forEach((video, index) => {
 
-    
-if (!video.snippet || !video.snippet.resourceId) return;
+    if (
+      !video.snippet ||
+      !video.snippet.resourceId
+    ) return;
 
-const videoId = video.snippet.resourceId.videoId;
+    const videoId =
+      video.snippet.resourceId.videoId;
 
-    const card = document.createElement("div");
+    const shortTitle =
+      video.snippet.title.length > 50
+        ? video.snippet.title.slice(0, 50) + "..."
+        : video.snippet.title;
+
+    const card =
+      document.createElement("div");
 
     card.className = "video-card";
 
     card.innerHTML = `
-      <img src="${video.snippet.thumbnails.medium.url}">
-      <p>${video.snippet.title}</p>
+
+      <img
+        src="${video.snippet.thumbnails.medium.url}"
+      >
+
+      <div class="video-card-content">
+
+        <h4>${shortTitle}</h4>
+
+      </div>
+
     `;
 
+    /* CLICK VIDEO */
+
     card.onclick = () => {
+
+      /* CREATE QUEUE FROM CURRENT CATEGORY */
+
+      currentPlaylist = videos;
+
+      currentIndex = index;
 
       playVideo(
         videoId,
@@ -93,10 +124,7 @@ const videoId = video.snippet.resourceId.videoId;
         video.snippet.description
       );
 
-      saveLastVideo(
-        videoId,
-        video.snippet.title
-      );
+      updateUpNext();
 
     };
 
@@ -108,26 +136,236 @@ const videoId = video.snippet.resourceId.videoId;
 
 /* PLAY VIDEO */
 
-function playVideo(videoId, title = "", description = "") {
+function playVideo(
+  videoId,
+  title = "",
+  description = ""
+){
+
+  /* SHOW PLAYER */
+
+  document
+    .getElementById("playerSection")
+    .classList.remove("hidden");
 
   const player =
     document.getElementById("video-player");
 
   player.src =
-    `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 
-  document.getElementById("video-title").innerText =
-    title;
+  /* SHORT DESCRIPTION */
 
-  document.getElementById("video-description").innerText =
-    description || "No description available.";
+  let shortDescription =
+    description;
+
+  if(description.length > 180){
+
+    shortDescription =
+      description.slice(0,180) + "...";
+
+  }
+
+  document.getElementById(
+    "video-title"
+  ).innerText = title;
+
+  document.getElementById(
+    "video-description"
+  ).innerText =
+    shortDescription ||
+    "No description available.";
+
+  /* SAVE LAST PLAYED */
+
+  localStorage.setItem(
+    "lastPlayedVideo",
+    JSON.stringify({
+      videoId,
+      title,
+      description
+    })
+  );
+
+  /* SCROLL TO PLAYER */
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
 
 }
+
+
+
+/* LOAD LAST PLAYED VIDEO */
+
+function loadLastPlayedVideo(){
+
+  const saved =
+    JSON.parse(
+      localStorage.getItem(
+        "lastPlayedVideo"
+      )
+    );
+
+  if(!saved) return;
+
+  playVideo(
+    saved.videoId,
+    saved.title,
+    saved.description
+  );
+
+}
+
+
+
+/* UP NEXT QUEUE */
+
+function updateUpNext(){
+
+  const row =
+    document.getElementById("up-next-row");
+
+  if(!row) return;
+
+  row.innerHTML = "";
+
+  const nextVideos =
+    currentPlaylist.slice(
+      currentIndex + 1,
+      currentIndex + 8
+    );
+
+  nextVideos.forEach((video, index) => {
+
+    const videoId =
+      video.snippet.resourceId.videoId;
+
+    const card =
+      document.createElement("div");
+
+    card.className = "video-card";
+
+    card.innerHTML = `
+
+      <img
+        src="${video.snippet.thumbnails.medium.url}"
+      >
+
+      <div class="video-card-content">
+
+        <h4>
+          ${video.snippet.title.slice(0, 45)}
+        </h4>
+
+      </div>
+
+    `;
+
+    card.onclick = () => {
+
+      currentIndex =
+        currentIndex + index + 1;
+
+      playVideo(
+        videoId,
+        video.snippet.title,
+        video.snippet.description
+      );
+
+      updateUpNext();
+
+    };
+
+    row.appendChild(card);
+
+  });
+
+}
+
+
+
+
+/* NEXT VIDEO */
+
+function playNext(){
+
+  if(
+    currentIndex <
+    currentPlaylist.length - 1
+  ){
+
+    currentIndex++;
+
+    const nextVideo =
+      currentPlaylist[currentIndex];
+
+    const videoId =
+      nextVideo.snippet.resourceId.videoId;
+
+    playVideo(
+      videoId,
+      nextVideo.snippet.title,
+      nextVideo.snippet.description
+    );
+
+    updateUpNext();
+
+  }
+
+}
+
+
+/* PREVIOUS VIDEO */
+
+function playPrevious(){
+
+  if(currentIndex > 0){
+
+    currentIndex--;
+
+    const prevVideo =
+      currentPlaylist[currentIndex];
+
+    const videoId =
+      prevVideo.snippet.resourceId.videoId;
+
+    playVideo(
+      videoId,
+      prevVideo.snippet.title,
+      prevVideo.snippet.description
+    );
+
+    updateUpNext();
+
+  }
+
+}
+
+/* BUTTONS */
+
+document
+  .getElementById("nextBtn")
+  .addEventListener("click", playNext);
+
+document
+  .getElementById("prevBtn")
+  .addEventListener("click", playPrevious);
+
+
+
+
+/* HIDE PLAYER WHEN SWITCHING CATEGORY */
+
+document
+  .getElementById("playerSection")
+  .classList.add("hidden");
+
+
+
+  
 
 /* SAVE */
 
@@ -140,36 +378,7 @@ function saveLastVideo(id, title) {
 
 }
 
-/* CONTINUE */
 
-function loadContinueWatching() {
-
-  const data =
-    JSON.parse(localStorage.getItem("lastVideo"));
-
-  if (!data) return;
-
-  const row =
-    document.getElementById("row-continue");
-
-  row.innerHTML = "";
-
-  const card = document.createElement("div");
-
-  card.className = "video-card";
-
-  card.innerHTML = `
-    <img src="https://img.youtube.com/vi/${data.id}/mqdefault.jpg">
-    <p>${data.title}</p>
-  `;
-
-  card.onclick = () => {
-    playVideo(data.id);
-  };
-
-  row.appendChild(card);
-
-}
 
 /* CATEGORY SWITCHING */
 
@@ -233,6 +442,8 @@ document
 /* START */
 
 loadAll();
+
+loadLastPlayedVideo();
 
 
 

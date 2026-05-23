@@ -84,7 +84,10 @@
   <main class="content">
 
     <!-- PLAYER -->
-    <section id="player-section">
+    <section
+     class="player-section hidden"
+       id="playerSection"
+    >
       <iframe
         id="video-player"
         src=""
@@ -92,28 +95,85 @@
         allow="autoplay"
       ></iframe>
 
-<!-- VIDEO INFO -->
-<div class="video-info">
 
+<!-- PLAYER CONTROLS -->
 
-  <div class="continue-box">
+<div class="player-controls">
 
-    <h3>Continue Watching</h3>
-    
-    <div id="row-continue"
-    class="video-grid"></div>
-    
-    </div>
+  <button id="prevBtn" class="control-btn">
 
+    <span>⏮</span>
 
-  <h1 id="video-title">Select a video</h1>
-  <p id="video-description">
-    Video description will appear here.
-  </p>
+    Previous
+
+  </button>
+
+  <button id="nextBtn" class="control-btn next">
+
+    Next
+
+    <span>⏭</span>
+
+  </button>
+
 </div>
 
-    </section>
+<!-- VIDEO INFO -->
 
+<div class="video-info">
+
+  <div class="video-meta">
+
+    <div class="video-badge live-badge">
+
+      ● NOW PLAYING
+
+    </div>
+
+    <div class="video-badge">
+
+      BaloTV Stream
+
+    </div>
+
+  </div>
+
+  <h1 id="video-title">
+
+    Welcome to BaloTV
+
+  </h1>
+
+  <p id="video-description">
+
+    Select any video to start watching.
+
+  </p>
+
+</div>
+
+
+  <!-- UP NEXT -->
+
+  <section class="section">
+
+    <div class="section-title">
+
+      <h2>Up Next</h2>
+
+    </div>
+
+    <div
+      id="up-next-row"
+      class="video-row"
+    ></div>
+
+  </section>
+
+
+
+
+        
 
 
     <!-- HOME -->
@@ -139,13 +199,6 @@
       <h2>Music Videos</h2>
       <div id="row-musicvideos" class="video-grid"></div>
     </section>
-
-
-
-    <div class="hero-buttons">
-      <a href="about.html">Why BaloTV</a>
-      <a href="terms.html">terms</a>
-    </div>
 
 
     
