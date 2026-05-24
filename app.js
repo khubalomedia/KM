@@ -142,6 +142,12 @@ function playVideo(
   description = ""
 ){
 
+  /* SHOW PLAYER */
+
+  document
+    .getElementById("playerSection")
+    .classList.remove("hidden");
+
   const player =
     document.getElementById("video-player");
 
@@ -170,7 +176,7 @@ function playVideo(
     shortDescription ||
     "No description available.";
 
-  /* SAVE LAST PLAYED VIDEO */
+  /* SAVE LAST PLAYED */
 
   localStorage.setItem(
     "lastPlayedVideo",
@@ -180,6 +186,8 @@ function playVideo(
       description
     })
   );
+
+  /* SCROLL TO PLAYER */
 
   window.scrollTo({
     top:0,
@@ -348,6 +356,17 @@ document
 
 
 
+
+/* HIDE PLAYER WHEN SWITCHING CATEGORY */
+
+document
+  .getElementById("playerSection")
+  .classList.add("hidden");
+
+
+
+  
+
 /* SAVE */
 
 function saveLastVideo(id, title) {
@@ -424,7 +443,7 @@ document
 
 loadAll();
 
-loadLastPlayedVideo();
+
 
 
 
