@@ -304,3 +304,59 @@ footer{
   }
 
 }
+
+
+
+/* MOBILE NAV */
+
+.mobile-nav{
+
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:70px;
+
+  background:#111;
+
+  border-top:1px solid #222;
+
+  display:none;
+
+  justify-content:space-around;
+
+  align-items:center;
+
+  z-index:9999;
+}
+
+.mobile-nav-btn{
+
+  background:none;
+
+  border:none;
+
+  color:#aaa;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+.mobile-nav-btn.active{
+  color:#aaa;
+}
+
+@media(max-width:768px){
+
+  .mobile-nav{
+    display:flex;
+  }
+
+  body{
+    padding-bottom:90px;
+  }
+
+}
