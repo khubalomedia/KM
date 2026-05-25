@@ -6,6 +6,21 @@
   <title>BaloTV Terms & Conditions</title>
 
   <link rel="stylesheet" href="terms.css">
+
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta
+    name="theme-color"
+    content="#ff1a1a"
+  />
+  
+  <link
+    rel="apple-touch-icon"
+    href="images/icon-192.png"
+  />
+
+
 </head>
 <body>
 
@@ -298,6 +313,19 @@
 
     
     </script>
+
+
+<script>
+
+  if("serviceWorker" in navigator){
+  
+    navigator.serviceWorker
+    .register("/service-worker.js");
+  
+  }
+  
+  </script>
+
 
 
 </body>

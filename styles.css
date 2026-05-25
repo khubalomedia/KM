@@ -718,3 +718,33 @@ body {
   }
 
 }
+
+
+
+.install-btn{
+
+  position:fixed;
+
+  bottom:100px;
+
+  right:20px;
+
+  z-index:99999;
+
+  background:#ff1a1a;
+
+  color:white;
+
+  border:none;
+
+  padding:15px 22px;
+
+  border-radius:16px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 30px rgba(255,0,0,0.3);
+}
