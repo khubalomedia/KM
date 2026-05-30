@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
 
 <title>BaloTV</title>
 
 <link rel="stylesheet" href="styles.css">
-
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#000000">
-
 
 <link rel="manifest" href="manifest.json">
 
@@ -28,166 +30,124 @@
 
 <body>
 
+<header class="topbar">
 
+  <!-- HAMBURGER MENU -->
 
+  <div
+    class="menu-btn"
+    onclick="toggleMenu()"
+  >
 
+    <span></span>
+    <span></span>
+    <span></span>
 
+  </div>
 
-  <header class="topbar">
+  <!-- DROPDOWN MENU -->
 
-    <!-- HAMBURGER MENU -->
-  
-    <div class="menu-btn" onclick="toggleMenu()">
-  
-      <span></span>
-      <span></span>
-      <span></span>
-  
-    </div>
-  
-    <!-- DROPDOWN MENU -->
-  
-    <div class="dropdown-menu" id="dropdownMenu">
-  
-      <a href="index.html">Home</a>
-  
-      <a href="about.html">Why BaloTV</a>
-  
-      <a href="terms.html">Terms</a>
-  
-    </div>
-  
-    <div class="logo">
-      <img src="images/balotv-logo.png" alt="BaloTV">
-    </div>
-  
-    <div class="top-right">
-      <input type="text" placeholder="Search..." id="searchInput">
-    </div>
-  
-  </header>
+  <div
+    class="dropdown-menu"
+    id="dropdownMenu"
+  >
 
+    <a href="index.html">Home</a>
 
+    <a href="about.html">Submit Content</a>
+
+    <a href="blog.html">Blog</a>
+
+  </div>
+
+  <div class="logo">
+
+    <img
+      src="images/balotv-logo.png"
+      alt="BaloTV"
+    >
+
+  </div>
+
+  <div class="top-right">
+
+    <input
+      type="text"
+      placeholder="Search..."
+      id="searchInput"
+    >
+
+  </div>
+
+</header>
 
 <div class="layout">
 
+   <!-- MAIN -->
 
+<main class="content">
 
-  <!-- MAIN -->
-  <main class="content">
+<!-- PLAYER -->
 
-    <!-- PLAYER -->
-    <section
-     class="player-section hidden"
-       id="playerSection"
-    >
-      <iframe
-        id="video-player"
-        src=""
-        allowfullscreen
-        allow="autoplay"
-      ></iframe>
+<section
+  class="player-section hidden"
+  id="playerSection"
+>
 
+<iframe
+  id="video-player"
+  src=""
+  allowfullscreen
+  allow="autoplay"
+></iframe>
 
 <!-- PLAYER CONTROLS -->
 
 <div class="player-controls">
 
-  <button id="prevBtn" class="control-btn">
+<button
+  id="prevBtn"
+  class="control-btn"
+>
 
-    <span>⏮</span>
+⏮ Previous
 
-    Previous
+</button>
 
-  </button>
+<button
+  id="nextBtn"
+  class="control-btn next"
+>
 
-  <button id="nextBtn" class="control-btn next">
+Next ⏭
 
-    Next
-
-    <span>⏭</span>
-
-  </button>
-
-</div>
-
-<!-- VIDEO INFO -->
-
-<div class="video-info">
-
-  <div class="video-meta">
-
-    <div class="video-badge live-badge">
-
-      ● NOW PLAYING
-
-    </div>
-
-    <div class="video-badge">
-
-      BaloTV Stream
-
-    </div>
-
-  </div>
-
-  <h1 id="video-title">
-
-    Welcome to BaloTV
-
-  </h1>
-
-  <p id="video-description">
-
-    Select any video to start watching.
-
-  </p>
+</button>
 
 </div>
 
 
 
 
-  <!-- UP NEXT -->
-
-  <section class="section">
-
-    <div class="section-title">
-
-      <h2>Up Next</h2>
-
-    </div>
-
-    <div
-      id="up-next-row"
-      class="video-row"
-    ></div>
-
-  </section>
-
+<div
+  id="up-next-row"
+  class="video-row"
+></div>
 
 </section>
 
+</section>
+
+<!-- CONTENT -->
+
+<section class="section category-section" id="section-home">
+  <h2>Home Videos</h2>
+  <div id="row-home" class="video-list"></div>
+</section>
 
 
-
-
-
-
-    <!-- HOME -->
-    <section class="section category-section" id="section-home">
-      <h2>Home Videos</h2>
-      <div id="row-home" class=class="video-row"></div>
-    </section>
-
-
-
-
-    
-  </main>
+</main>
 
 </div>
-
 
 <!-- MOBILE NAV -->
 
@@ -216,26 +176,18 @@
 
 </div>
 
-
-
-
 <script>
 
-  function toggleMenu(){
-  
-    document
+function toggleMenu(){
+
+  document
     .getElementById("dropdownMenu")
     .classList
     .toggle("active");
-  
-  }
-  
-  </script>
 
+}
 
-
-<script src="app.js"></script>
-
+</script>
 
 
 <script>
@@ -246,10 +198,12 @@
     .register("/service-worker.js");
   
   }
-  
-  </script>
+
+</script>
 
 
+<script src="app.js"></script>
 
 </body>
+
 </html>
