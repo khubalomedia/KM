@@ -139,12 +139,7 @@ content="width=device-width, initial-scale=1.0"
 </main>
 
 
-if("serviceWorker" in navigator){
-  
-  navigator.serviceWorker
-  .register("/service-worker.js");
 
-}
 
 </script>
 
@@ -190,6 +185,18 @@ if("serviceWorker" in navigator){
 </div>
 
 </div>
+
+
+
+<script>
+if("serviceWorker" in navigator){
+  
+  navigator.serviceWorker
+  .register("/service-worker.js");
+
+}
+
+</script>
 
 
 <!-- BLOG SCRIPT -->
