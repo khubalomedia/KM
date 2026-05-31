@@ -295,10 +295,14 @@ async function createPost() {
 
   if (error) {
 
-    alert(error.message)
-
+    console.error(error)
+  
+    alert(
+      JSON.stringify(error)
+    )
+  
     return
-
+  
   }
 
   contentInput.value = ""
