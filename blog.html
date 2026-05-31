@@ -139,6 +139,59 @@ content="width=device-width, initial-scale=1.0"
 </main>
 
 
+if("serviceWorker" in navigator){
+  
+  navigator.serviceWorker
+  .register("/service-worker.js");
+
+}
+
+</script>
+
+
+<div id="authModal" class="auth-modal">
+
+<div class="auth-box">
+
+  <button id="closeAuth" class="close-auth">
+    ×
+  </button>
+
+  <h2 id="authTitle">
+    Login
+  </h2>
+
+  <input
+    id="authUsername"
+    type="text"
+    placeholder="Username"
+    style="display:none"
+  >
+
+  <input
+    id="authEmail"
+    type="email"
+    placeholder="Email"
+  >
+
+  <input
+    id="authPassword"
+    type="password"
+    placeholder="Password"
+  >
+
+  <button
+    id="authSubmit"
+    class="auth-submit"
+  >
+    Continue
+  </button>
+
+</div>
+
+</div>
+
+
 <!-- BLOG SCRIPT -->
 
 <script src="blog.js"></script>

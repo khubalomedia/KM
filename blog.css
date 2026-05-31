@@ -472,3 +472,70 @@
   color:white;
   font-size:14px;
 }
+
+
+
+
+/* AUTH MODAL */
+
+.auth-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.auth-modal.show{
+  display:flex;
+}
+
+.auth-box{
+  width:90%;
+  max-width:400px;
+  background:#181818;
+  border:1px solid #333;
+  border-radius:18px;
+  padding:24px;
+  position:relative;
+}
+
+.auth-box h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.auth-box input{
+  width:100%;
+  box-sizing:border-box;
+  padding:14px;
+  margin-bottom:12px;
+  border:1px solid #333;
+  border-radius:10px;
+  background:#101010;
+  color:white;
+}
+
+.auth-submit{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#ff1717;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.close-auth{
+  position:absolute;
+  top:10px;
+  right:14px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:28px;
+  cursor:pointer;
+}

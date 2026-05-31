@@ -35,6 +35,30 @@ const userLabel =
 document.getElementById("userLabel")
 
 
+const authModal =
+document.getElementById("authModal")
+
+const authTitle =
+document.getElementById("authTitle")
+
+const authUsername =
+document.getElementById("authUsername")
+
+const authEmail =
+document.getElementById("authEmail")
+
+const authPassword =
+document.getElementById("authPassword")
+
+const authSubmit =
+document.getElementById("authSubmit")
+
+const closeAuth =
+document.getElementById("closeAuth")
+
+let authMode = "login"
+
+
 // AUTH STATE
 let currentUser = null
 
@@ -94,6 +118,11 @@ async function checkUser() {
 // REGISTER
 async function register() {
 
+  const username =
+  prompt("Choose Username")
+
+  if (!username) return
+
   const email =
   prompt("Email")
 
@@ -104,7 +133,10 @@ async function register() {
 
   if (!password) return
 
-  const { error } =
+  const {
+    data,
+    error
+  } =
   await supabaseClient.auth.signUp({
     email,
     password
@@ -118,12 +150,43 @@ async function register() {
 
   }
 
-  alert(
-    "Account created successfully"
-  )
+  if (data.user) {
+
+    const {
+      error: profileError
+    } =
+    await supabaseClient
+    .from("profiles")
+    .insert([
+      {
+        id: data.user.id,
+        username: username
+      }
+    ])
+
+    if (profileError) {
+
+      console.error(profileError)
+
+      alert(profileError.message)
+
+      return
+
+    }
+
+  }
+
+  await supabaseClient.auth
+  .signInWithPassword({
+    email,
+    password
+  })
+
+  await checkUser()
+
+  alert("Welcome to BaloTV!")
 
 }
-
 
 // LOGIN
 async function login() {
@@ -360,25 +423,157 @@ document.addEventListener(
 
 
 // EVENTS
-postBtn.addEventListener(
-  "click",
-  createPost
-)
-
 loginBtn.addEventListener(
   "click",
-  login
+  openLogin
 )
 
 registerBtn.addEventListener(
   "click",
-  register
+  openRegister
+)
+
+authSubmit.addEventListener(
+  "click",
+  submitAuth
+)
+
+closeAuth.addEventListener(
+  "click",
+  closeModal
 )
 
 logoutBtn.addEventListener(
   "click",
   logout
 )
+
+
+
+// functions
+
+function openLogin(){
+
+  authMode = "login"
+
+  authTitle.innerText =
+  "Login"
+
+  authUsername.style.display =
+  "none"
+
+  authModal.classList.add(
+    "show"
+  )
+
+}
+
+function openRegister(){
+
+  authMode = "register"
+
+  authTitle.innerText =
+  "Create Account"
+
+  authUsername.style.display =
+  "block"
+
+  authModal.classList.add(
+    "show"
+  )
+
+}
+
+function closeModal(){
+
+  authModal.classList.remove(
+    "show"
+  )
+
+  authUsername.value = ""
+  authEmail.value = ""
+  authPassword.value = ""
+
+}
+
+
+async function submitAuth(){
+
+  const email =
+  authEmail.value.trim()
+
+  const password =
+  authPassword.value.trim()
+
+  if(!email || !password){
+    alert("Fill all fields")
+    return
+  }
+
+  if(authMode === "login"){
+
+    const { error } =
+    await supabaseClient.auth
+    .signInWithPassword({
+      email,
+      password
+    })
+
+    if(error){
+      alert(error.message)
+      return
+    }
+
+    await checkUser()
+
+    closeModal()
+
+    return
+
+  }
+
+  const username =
+  authUsername.value.trim()
+
+  if(!username){
+    alert("Choose a username")
+    return
+  }
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signUp({
+    email,
+    password
+  })
+
+  if(error){
+    alert(error.message)
+    return
+  }
+
+  await supabaseClient
+  .from("profiles")
+  .insert([
+    {
+      id:data.user.id,
+      username:username
+    }
+  ])
+
+  await supabaseClient.auth
+  .signInWithPassword({
+    email,
+    password
+  })
+
+  await checkUser()
+
+  closeModal()
+
+}
 
 
 // START
