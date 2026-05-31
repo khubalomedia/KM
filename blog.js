@@ -427,6 +427,12 @@ document.addEventListener(
 
 
 // EVENTS
+
+postBtn.addEventListener(
+  "click",
+  createPost
+)
+
 loginBtn.addEventListener(
   "click",
   openLogin
