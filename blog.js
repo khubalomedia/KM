@@ -50,18 +50,28 @@ async function checkUser() {
 
   if (user) {
 
+    const {
+      data: profile,
+      error: profileError
+    } =
+    await supabaseClient
+    .from("profiles")
+    .select("username")
+    .eq("id", user.id)
+    .single()
+  
     userLabel.innerText =
-    user.email
-
+    profile?.username || user.email
+  
     loginBtn.style.display =
     "none"
-
+  
     registerBtn.style.display =
     "none"
-
+  
     logoutBtn.style.display =
     "inline-block"
-
+  
   } else {
 
     userLabel.innerText =
@@ -189,6 +199,15 @@ async function createPost() {
   postBtn.innerText =
   "Posting..."
 
+  const {
+    data: profile
+  } =
+  await supabaseClient
+  .from("profiles")
+  .select("username")
+  .eq("id", currentUser.id)
+  .single()
+  
   const { error } =
   await supabaseClient
   .from("posts")
@@ -196,10 +215,11 @@ async function createPost() {
     {
       user_id:
       currentUser.id,
-
+  
       username:
+      profile?.username ||
       currentUser.email,
-
+  
       content:
       content
     }
