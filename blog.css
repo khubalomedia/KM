@@ -445,3 +445,30 @@
   padding-bottom:80px;
 
 }
+
+
+
+.header-actions{
+  display:flex !important;
+  align-items:center;
+  gap:10px;
+  margin-left:auto;
+}
+
+#loginBtn,
+#registerBtn,
+#logoutBtn{
+  display:inline-block;
+  background:#ff1717;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+#userLabel{
+  color:white;
+  font-size:14px;
+}

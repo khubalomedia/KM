@@ -25,6 +25,9 @@ document.getElementById("posts")
 const loginBtn =
 document.getElementById("loginBtn")
 
+const registerBtn =
+document.getElementById("registerBtn")
+
 const logoutBtn =
 document.getElementById("logoutBtn")
 
@@ -36,7 +39,7 @@ document.getElementById("userLabel")
 let currentUser = null
 
 
-// CHECK LOGIN
+// CHECK USER
 async function checkUser() {
 
   const {
@@ -48,9 +51,12 @@ async function checkUser() {
   if (user) {
 
     userLabel.innerText =
-    `Logged in as ${user.email}`
+    user.email
 
     loginBtn.style.display =
+    "none"
+
+    registerBtn.style.display =
     "none"
 
     logoutBtn.style.display =
@@ -59,14 +65,53 @@ async function checkUser() {
   } else {
 
     userLabel.innerText =
-    "Not logged in"
+    "Guest"
 
     loginBtn.style.display =
     "inline-block"
 
+    registerBtn.style.display =
+    "inline-block"
+
     logoutBtn.style.display =
     "none"
+
   }
+
+}
+
+
+// REGISTER
+async function register() {
+
+  const email =
+  prompt("Email")
+
+  if (!email) return
+
+  const password =
+  prompt("Password")
+
+  if (!password) return
+
+  const { error } =
+  await supabaseClient.auth.signUp({
+    email,
+    password
+  })
+
+  if (error) {
+
+    alert(error.message)
+
+    return
+
+  }
+
+  alert(
+    "Account created successfully"
+  )
+
 }
 
 
@@ -76,11 +121,12 @@ async function login() {
   const email =
   prompt("Email")
 
+  if (!email) return
+
   const password =
   prompt("Password")
 
-  if (!email || !password)
-  return
+  if (!password) return
 
   const { error } =
   await supabaseClient.auth
@@ -94,9 +140,11 @@ async function login() {
     alert(error.message)
 
     return
+
   }
 
   await checkUser()
+
 }
 
 
@@ -106,6 +154,7 @@ async function logout() {
   await supabaseClient.auth.signOut()
 
   await checkUser()
+
 }
 
 
@@ -119,6 +168,7 @@ async function createPost() {
     )
 
     return
+
   }
 
   const content =
@@ -127,13 +177,15 @@ async function createPost() {
   if (!content) {
 
     alert(
-      "Enter post content"
+      "Enter a post"
     )
 
     return
+
   }
 
   postBtn.disabled = true
+
   postBtn.innerText =
   "Posting..."
 
@@ -154,6 +206,7 @@ async function createPost() {
   ])
 
   postBtn.disabled = false
+
   postBtn.innerText =
   "Post"
 
@@ -161,14 +214,14 @@ async function createPost() {
 
     alert(error.message)
 
-    console.log(error)
-
     return
+
   }
 
   contentInput.value = ""
 
   loadPosts()
+
 }
 
 
@@ -176,15 +229,20 @@ async function createPost() {
 async function loadPosts() {
 
   postsContainer.innerHTML =
-  "<p>Loading feed...</p>"
+  "<p>Loading...</p>"
 
-  const { data, error } =
+  const {
+    data,
+    error
+  } =
   await supabaseClient
   .from("posts")
   .select("*")
   .order(
     "created_at",
-    { ascending: false }
+    {
+      ascending:false
+    }
   )
 
   if (error) {
@@ -193,6 +251,7 @@ async function loadPosts() {
     "<p>Failed to load posts</p>"
 
     return
+
   }
 
   postsContainer.innerHTML = ""
@@ -203,6 +262,7 @@ async function loadPosts() {
     "<p>No posts yet</p>"
 
     return
+
   }
 
   data.forEach(post => {
@@ -222,12 +282,14 @@ async function loadPosts() {
       </div>
 
     `
+
   })
+
 }
 
 
-// TOGGLE MENU
-function toggleMenu(){
+// MENU
+function toggleMenu() {
 
   const menu =
   document.getElementById(
@@ -237,6 +299,7 @@ function toggleMenu(){
   menu.classList.toggle(
     "show"
   )
+
 }
 
 
@@ -255,7 +318,7 @@ document.addEventListener(
       ".menu-btn"
     )
 
-    if(
+    if (
       menu &&
       menuBtn &&
       !menu.contains(
@@ -264,7 +327,7 @@ document.addEventListener(
       !menuBtn.contains(
         event.target
       )
-    ){
+    ) {
 
       menu.classList.remove(
         "show"
@@ -285,6 +348,11 @@ postBtn.addEventListener(
 loginBtn.addEventListener(
   "click",
   login
+)
+
+registerBtn.addEventListener(
+  "click",
+  register
 )
 
 logoutBtn.addEventListener(
