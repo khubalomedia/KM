@@ -374,10 +374,10 @@ async function loadPosts() {
     
       <div class="post-header">
     
-        <img
-          src="${post.avatar_url || 'https://via.placeholder.com/50'}"
-          class="post-avatar"
-        >
+    <img
+      src="${post.avatar_url || 'images/default-avatar.png'}"
+      class="post-avatar"
+     >
     
         <h3>
           ${post.username}
