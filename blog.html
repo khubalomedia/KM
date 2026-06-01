@@ -49,15 +49,41 @@ content="width=device-width, initial-scale=1.0"
 
   <div class="header-actions">
 
-    <span
-      id="userLabel"
-      style="
-      color:white;
-      margin-right:10px;
-      "
+    <div class="user-info">
+
+      <img
+        id="avatarPreview"
+        src="https://via.placeholder.com/40"
+        alt="Profile"
+        class="header-avatar"
+      >
+    
+      <span
+        id="userLabel"
+        style="
+        color:white;
+        margin-right:10px;
+        "
+      >
+        Guest
+      </span>
+    
+    </div>
+    
+    <input
+      type="file"
+      id="avatarInput"
+      accept="image/*"
+      hidden
     >
-      Guest
-    </span>
+    
+    <button
+      id="avatarBtn"
+      class="header-btn"
+      style="display:none;"
+    >
+      Photo
+    </button>
 
     <button
       id="loginBtn"

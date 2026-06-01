@@ -58,6 +58,16 @@ document.getElementById("closeAuth")
 
 let authMode = "login"
 
+const avatarBtn =
+document.getElementById("avatarBtn")
+
+const avatarInput =
+document.getElementById("avatarInput")
+
+const avatarPreview =
+document.getElementById("avatarPreview")
+
+
 
 // AUTH STATE
 let currentUser = null
@@ -80,12 +90,14 @@ async function checkUser() {
     } =
     await supabaseClient
     .from("profiles")
-    .select("username")
+    .select("username, avatar_url")
     .eq("id", user.id)
     .single()
   
-    userLabel.innerText =
-    profile?.username || user.email
+    if(profile?.avatar_url){
+      avatarPreview.src =
+      profile.avatar_url
+    }
   
     loginBtn.style.display =
     "none"
@@ -267,7 +279,7 @@ async function createPost() {
   } =
   await supabaseClient
   .from("profiles")
-  .select("username")
+  .select("username, avatar_url")
   .eq("id", currentUser.id)
   .single()
   
@@ -276,15 +288,10 @@ async function createPost() {
   .from("posts")
   .insert([
     {
-      user_id:
-      currentUser.id,
-  
-      username:
-      profile?.username ||
-      currentUser.email,
-  
-      content:
-      content
+      user_id: currentUser.id,
+      username: profile?.username || currentUser.email,
+      avatar_url: profile?.avatar_url || "",
+      content: content
     }
   ])
 
@@ -355,19 +362,26 @@ async function loadPosts() {
   data.forEach(post => {
 
     postsContainer.innerHTML += `
-
-      <div class="feed-post">
-
+    <div class="feed-post">
+    
+      <div class="post-header">
+    
+        <img
+          src="${post.avatar_url || 'https://via.placeholder.com/50'}"
+          class="post-avatar"
+        >
+    
         <h3>
           ${post.username}
         </h3>
-
-        <p>
-          ${post.content}
-        </p>
-
+    
       </div>
-
+    
+      <p>
+        ${post.content}
+      </p>
+    
+    </div>
     `
 
   })
@@ -456,6 +470,17 @@ closeAuth.addEventListener(
 logoutBtn.addEventListener(
   "click",
   logout
+)
+
+
+avatarBtn.addEventListener(
+  "click",
+  () => avatarInput.click()
+)
+
+avatarInput.addEventListener(
+  "change",
+  uploadAvatar
 )
 
 
@@ -583,6 +608,59 @@ async function submitAuth(){
 
   closeModal()
 
+}
+
+
+async function uploadAvatar() {
+
+  if (!currentUser) {
+    alert("Login first")
+    return
+  }
+
+  const file =
+  avatarInput.files[0]
+
+  if (!file) return
+
+  const filePath =
+  `${currentUser.id}/${Date.now()}_${file.name}`
+
+  const { error: uploadError } =
+  await supabaseClient.storage
+  .from("avatars")
+  .upload(filePath, file)
+
+  if (uploadError) {
+    alert(uploadError.message)
+    return
+  }
+
+  const { data } =
+  supabaseClient.storage
+  .from("avatars")
+  .getPublicUrl(filePath)
+
+  const avatarUrl =
+  data.publicUrl
+
+  const { error } =
+  await supabaseClient
+  .from("profiles")
+  .update({
+    avatar_url: avatarUrl
+  })
+  .eq("id", currentUser.id)
+
+  if (error) {
+    alert(error.message)
+    return
+  }
+
+  avatarPreview.src =
+  avatarUrl
+
+  alert("Profile picture updated!")
 }
 
 

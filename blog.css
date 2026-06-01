@@ -539,3 +539,56 @@
   font-size:28px;
   cursor:pointer;
 }
+
+
+
+.post-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.post-avatar{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+
+
+.avatar{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #ff1a1a;
+}
+
+#avatarBtn{
+  background:#ff1a1a;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+
+
+
+.user-info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.header-avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #ff1717;
+}
