@@ -82,6 +82,9 @@ document.getElementById("newUsername")
 const saveProfileBtn =
 document.getElementById("saveProfileBtn")
 
+const avatarUpload =
+document.getElementById("avatarUpload")
+
 
 // AUTH STATE
 let currentUser = null
@@ -117,6 +120,9 @@ async function checkUser() {
     avatarPreview.src =
     profile?.avatar_url ||
     "images/default-avatar.png"
+
+    avatarPreview.style.display =
+    "block"
   
     loginBtn.style.display =
     "none"
@@ -732,20 +738,78 @@ async function saveProfile(){
 
   if(!username){
 
-    alert(
-      "Enter username"
-    )
+    alert("Enter username")
 
     return
 
   }
 
-  const { error } =
+  let avatarUrl = null
+
+  // Upload avatar if selected
+  if(
+    avatarUpload.files &&
+    avatarUpload.files[0]
+  ){
+
+    const file =
+    avatarUpload.files[0]
+
+    const fileName =
+    `${currentUser.id}-${Date.now()}`
+
+    const {
+      error: uploadError
+    } =
+    await supabaseClient
+    .storage
+    .from("avatars")
+    .upload(
+      fileName,
+      file,
+      {
+        upsert:true
+      }
+    )
+
+    if(uploadError){
+
+      alert(uploadError.message)
+
+      return
+
+    }
+
+    const {
+      data
+    } =
+    supabaseClient
+    .storage
+    .from("avatars")
+    .getPublicUrl(fileName)
+
+    avatarUrl =
+    data.publicUrl
+
+  }
+
+  const updateData = {
+    username: username
+  }
+
+  if(avatarUrl){
+
+    updateData.avatar_url =
+    avatarUrl
+
+  }
+
+  const {
+    error
+  } =
   await supabaseClient
   .from("profiles")
-  .update({
-    username: username
-  })
+  .update(updateData)
   .eq(
     "id",
     currentUser.id
@@ -761,7 +825,7 @@ async function saveProfile(){
 
   await checkUser()
 
-  loadPosts()
+  await loadPosts()
 
   closeProfileModal()
 
