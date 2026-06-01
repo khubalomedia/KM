@@ -67,6 +67,20 @@ document.getElementById("avatarInput")
 const avatarPreview =
 document.getElementById("avatarPreview")
 
+const editProfileBtn =
+document.getElementById("editProfileBtn")
+
+const profileModal =
+document.getElementById("profileModal")
+
+const closeProfile =
+document.getElementById("closeProfile")
+
+const newUsername =
+document.getElementById("newUsername")
+
+const saveProfileBtn =
+document.getElementById("saveProfileBtn")
 
 
 // AUTH STATE
@@ -112,6 +126,9 @@ async function checkUser() {
   
     logoutBtn.style.display =
     "inline-block"
+
+    editProfileBtn.style.display =
+    "inline-block"
   
   } else {
 
@@ -128,6 +145,9 @@ async function checkUser() {
     "inline-block"
 
     logoutBtn.style.display =
+    "none"
+
+    editProfileBtn.style.display =
     "none"
 
   }
@@ -492,6 +512,21 @@ avatarInput.addEventListener(
 )
 
 
+editProfileBtn.addEventListener(
+  "click",
+  openProfileModal
+)
+
+closeProfile.addEventListener(
+  "click",
+  closeProfileModal
+)
+
+saveProfileBtn.addEventListener(
+  "click",
+  saveProfile
+)
+
 
 // functions
 
@@ -669,6 +704,71 @@ async function uploadAvatar() {
   avatarUrl
 
   alert("Profile picture updated!")
+}
+
+
+function openProfileModal(){
+
+  profileModal.classList.add(
+    "show"
+  )
+
+}
+
+function closeProfileModal(){
+
+  profileModal.classList.remove(
+    "show"
+  )
+
+}
+
+
+
+async function saveProfile(){
+
+  const username =
+  newUsername.value.trim()
+
+  if(!username){
+
+    alert(
+      "Enter username"
+    )
+
+    return
+
+  }
+
+  const { error } =
+  await supabaseClient
+  .from("profiles")
+  .update({
+    username: username
+  })
+  .eq(
+    "id",
+    currentUser.id
+  )
+
+  if(error){
+
+    alert(error.message)
+
+    return
+
+  }
+
+  await checkUser()
+
+  loadPosts()
+
+  closeProfileModal()
+
+  alert(
+    "Profile updated!"
+  )
+
 }
 
 

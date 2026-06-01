@@ -104,6 +104,15 @@ content="width=device-width, initial-scale=1.0"
       class="header-btn"
       style="display:none;"
     >
+
+    <button
+    id="editProfileBtn"
+    class="header-btn"
+    style="display:none;"
+  >
+    Edit Profile
+  </button>
+    
       Logout
     </button>
 
@@ -223,6 +232,41 @@ if("serviceWorker" in navigator){
 }
 
 </script>
+
+
+
+<div id="profileModal" class="auth-modal">
+
+  <div class="auth-box">
+
+    <button
+      id="closeProfile"
+      class="close-auth"
+    >
+      ×
+    </button>
+
+    <h2>
+      Edit Profile
+    </h2>
+
+    <input
+      id="newUsername"
+      type="text"
+      placeholder="New Username"
+    >
+
+    <button
+      id="saveProfileBtn"
+      class="auth-submit"
+    >
+      Save Changes
+    </button>
+
+  </div>
+
+</div>
+
 
 
 <!-- BLOG SCRIPT -->
