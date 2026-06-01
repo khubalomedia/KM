@@ -94,10 +94,15 @@ async function checkUser() {
     .eq("id", user.id)
     .single()
   
-    if(profile?.avatar_url){
-      avatarPreview.src =
-      profile.avatar_url
-    }
+    userLabel.innerText =
+    profile?.username || user.email
+    
+    avatarPreview.style.display =
+    "block"
+
+    avatarPreview.src =
+    profile?.avatar_url ||
+    "images/default-avatar.png"
   
     loginBtn.style.display =
     "none"
@@ -112,6 +117,9 @@ async function checkUser() {
 
     userLabel.innerText =
     "Guest"
+
+    avatarPreview.style.display =
+    "none"
 
     loginBtn.style.display =
     "inline-block"
