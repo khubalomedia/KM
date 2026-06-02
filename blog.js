@@ -763,7 +763,7 @@ async function saveProfile(){
     } =
     await supabaseClient
     .storage
-    .from("avatars")
+    .from("Avatars")
     .upload(
       fileName,
       file,
