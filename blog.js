@@ -107,7 +107,7 @@ async function checkUser() {
     } =
     await supabaseClient
     .from("profiles")
-    .select("username, Avatar_url")
+    .select("username, avatar_url")
     .eq("id", user.id)
     .single()
   
@@ -313,7 +313,7 @@ async function createPost() {
   } =
   await supabaseClient
   .from("profiles")
-  .select("username, avatar_url")
+  .select("username, Avatar_url")
   .eq("id", currentUser.id)
   .single()
   
@@ -785,7 +785,7 @@ async function saveProfile(){
     } =
     supabaseClient
     .storage
-    .from("Avatars")
+    .from("avatars")
     .getPublicUrl(fileName)
 
     avatarUrl =
