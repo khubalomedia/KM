@@ -677,7 +677,7 @@ async function uploadAvatar() {
 
   const { error: uploadError } =
   await supabaseClient.storage
-  .from("avatars")
+  .from("Avatars")
   .upload(filePath, file)
 
   if (uploadError) {
@@ -687,7 +687,7 @@ async function uploadAvatar() {
 
   const { data } =
   supabaseClient.storage
-  .from("avatars")
+  .from("Avatars")
   .getPublicUrl(filePath)
 
   const avatarUrl =
@@ -785,7 +785,7 @@ async function saveProfile(){
     } =
     supabaseClient
     .storage
-    .from("avatars")
+    .from("Avatars")
     .getPublicUrl(fileName)
 
     avatarUrl =
