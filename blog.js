@@ -365,13 +365,16 @@ async function loadPosts() {
   } =
   await supabaseClient
   .from("posts")
-  .select("*")
-  .order(
-    "created_at",
-    {
-      ascending:false
-    }
-  )
+  .select(`
+    *,
+    profiles (
+      username,
+      avatar_url
+    )
+  `)
+  .order("created_at", {
+    ascending: false
+  })
 
   if (error) {
 
@@ -401,12 +404,12 @@ async function loadPosts() {
       <div class="post-header">
     
     <img
-      src="${post.avatar_url || 'images/default-avatar.png'}"
+      src="${post.profiles?.avatar_url || 'images/default-avatar.png'}"
       class="post-avatar"
      >
     
         <h3>
-          ${post.username}
+        ${post.profiles?.username || post.username}
         </h3>
     
       </div>
