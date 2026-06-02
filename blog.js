@@ -313,7 +313,7 @@ async function createPost() {
   } =
   await supabaseClient
   .from("profiles")
-  .select("username, Avatar_url")
+  .select("username, avatar_url")
   .eq("id", currentUser.id)
   .single()
   
