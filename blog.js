@@ -365,16 +365,11 @@ async function loadPosts() {
   } =
   await supabaseClient
   .from("posts")
-  .select(`
-    *,
-    profiles (
-      username,
-      avatar_url
-    )
-  `)
+  .select("*")
   .order("created_at", {
     ascending: false
   })
+  
 
   if (error) {
 
@@ -404,13 +399,13 @@ async function loadPosts() {
       <div class="post-header">
     
     <img
-      src="${post.profiles?.avatar_url || 'images/default-avatar.png'}"
-      class="post-avatar"
-     >
-    
-        <h3>
-        ${post.profiles?.username || post.username}
-        </h3>
+       src="${post.avatar_url || 'images/default-avatar.png'}"
+       class="post-avatar"
+    >
+
+    <h3>
+       ${post.username}
+   </h3>
     
       </div>
     
@@ -698,14 +693,27 @@ async function uploadAvatar() {
 
   const { error } =
   await supabaseClient
-  .from("profiles")
-  .update({
-    avatar_url: avatarUrl
-  })
-  .eq("id", currentUser.id)
-
+    .from("profiles")
+    .update(updateData)
+    .eq("id", currentUser.id)
+  
   if (error) {
     alert(error.message)
+    return
+  }
+  
+  // Update all old posts too
+  const { error: postError } =
+  await supabaseClient
+    .from("posts")
+    .update({
+      username: username,
+      avatar_url: avatarUrl || avatarPreview.src
+    })
+    .eq("user_id", currentUser.id)
+  
+  if (postError) {
+    alert(postError.message)
     return
   }
 
@@ -814,7 +822,7 @@ async function saveProfile(){
   .from("posts")
   .update({
     username: username,
-    avatar_url: avatarUrl
+    avatar_url: avatarUrl || avatarPreview.src
   })
   .eq("user_id", currentUser.id)
 
