@@ -700,7 +700,7 @@ async function uploadAvatar() {
   await supabaseClient
   .from("profiles")
   .update({
-    avatar_url: avatarUrl
+    avatar_url: avatarUrl || avatarPreview.src
   })
   .eq("id", currentUser.id)
 
@@ -811,12 +811,12 @@ async function saveProfile(){
     error
   } =
   await supabaseClient
-  .from("profiles")
-  .update(updateData)
-  .eq(
-    "id",
-    currentUser.id
-  )
+  .from("posts")
+  .update({
+    username: username,
+    avatar_url: avatarUrl || avatarPreview.src
+  })
+  .eq("user_id", currentUser.id)
 
   if(error){
 
