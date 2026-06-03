@@ -400,7 +400,8 @@ async function createPost() {
 async function likePost(postId){
 
   const {
-    data: post
+    data: post,
+    error: fetchError
   } =
   await supabaseClient
   .from("posts")
@@ -408,15 +409,27 @@ async function likePost(postId){
   .eq("id", postId)
   .single()
 
+  if(fetchError){
+    alert(fetchError.message)
+    return
+  }
+
+  const {
+    error
+  } =
   await supabaseClient
   .from("posts")
   .update({
-    likes:(post.likes || 0) + 1
+    likes: (post.likes || 0) + 1
   })
   .eq("id", postId)
 
-  loadPosts()
+  if(error){
+    alert(error.message)
+    return
+  }
 
+  loadPosts()
 }
 
 
@@ -528,7 +541,18 @@ async function loadPosts() {
    </h3>
     
       </div>
-    
+
+
+      <div class="feed-time">
+  ${
+    new Date(
+      post.created_at
+    ).toLocaleString()
+  }
+
+  </div>
+
+
 <p>
   ${post.content}
 </p>
@@ -558,7 +582,6 @@ ${
 </div>
 
 
-
 <div class="comments">
   ${
     comments?.map(comment => `
@@ -584,17 +607,11 @@ ${
 </button>
 
 
+</div>
 
 
 
 
-
-<div class="feed-time">
-  ${
-    new Date(
-      post.created_at
-    ).toLocaleString()
-  }
 </div>
 
     
