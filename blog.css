@@ -650,3 +650,51 @@
   cursor:pointer;
   font-size:14px;
 }
+
+
+
+.action-btn{
+  background:none;
+  border:none;
+  color:#ff1717;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.action-btn:hover{
+  transform:scale(1.05);
+}
+
+
+
+.feed-post{
+  background:#171717;
+  border:1px solid #222;
+  border-radius:24px;
+  padding:18px;
+  margin-bottom:20px;
+}
+
+.feed-time{
+  color:#888;
+  font-size:13px;
+  margin-top:10px;
+}
+
+.comments{
+  margin-top:15px;
+}
+
+.comment{
+  background:#111;
+  padding:10px;
+  border-radius:12px;
+  margin-top:8px;
+}
+
+.comment b{
+  color:#ff1717;
+  display:block;
+  margin-bottom:4px;
+}

@@ -501,7 +501,17 @@ async function loadPosts() {
 
   }
 
-  data.forEach(post => {
+  for (const post of data) {
+
+    const {
+      data: comments
+    } = await supabaseClient
+      .from("comments")
+      .select("*")
+      .eq("post_id", post.id)
+      .order("created_at", {
+        ascending: true
+      })
 
     postsContainer.innerHTML += `
     <div class="feed-post">
@@ -534,24 +544,33 @@ ${
   ""
 }
 
+
+
 <div class="feed-actions">
 
-  <button
-    onclick="likePost('${post.id}')"
-    class="action-btn"
-  >
-    ❤️ ${post.likes || 0}
-  </button>
+<button
+  onclick="likePost(${post.id})"
+  class="action-btn"
+>
+  ❤️ ${post.likes || 0} Likes
+</button>
 
 </div>
 
 
 
-
-
-
-<div id="comments-${post.id}">
+<div class="comments">
+  ${
+    comments?.map(comment => `
+      <div class="comment">
+        <b>${comment.username}</b>
+        <span>${comment.content}</span>
+      </div>
+    `).join("") || ""
+  }
 </div>
+
+
 
 <input
   id="comment-${post.id}"
@@ -582,7 +601,7 @@ ${
     </div>
     `
 
-  })
+  }
 
 }
 
@@ -859,8 +878,10 @@ async function uploadAvatar() {
 
   const { error } =
   await supabaseClient
-    .from("profiles")
-    .update(updateData)
+  .from("profiles")
+  .update({
+    avatar_url: avatarUrl
+  })
     .eq("id", currentUser.id)
   
   if (error) {
