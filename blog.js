@@ -361,13 +361,14 @@ async function createPost() {
   await supabaseClient
   .from("posts")
   .insert([
-    {
-      user_id: currentUser.id,
-      username: profile?.username || currentUser.email,
-      avatar_url: profile?.avatar_url || "",
-      content: content,
-      image_url: imageUrl
-    }
+  {
+    user_id: currentUser.id,
+    username: profile?.username || currentUser.email,
+    avatar_url: profile?.avatar_url || "",
+    content: content,
+    image_url: imageUrl,
+    likes: 0
+  }
   ])
 
   postBtn.disabled = false
@@ -544,10 +545,52 @@ async function loadPosts() {
 
 
       <div class="feed-time">
+
+
+function timeAgo(date){
+
+  const seconds =
+  Math.floor(
+    (new Date() - new Date(date))
+    / 1000
+  )
+
+  let interval =
+  Math.floor(seconds / 31536000)
+
+  if(interval > 1)
+    return interval + "y ago"
+
+  interval =
+  Math.floor(seconds / 2592000)
+
+  if(interval > 1)
+    return interval + "mo ago"
+
+  interval =
+  Math.floor(seconds / 86400)
+
+  if(interval > 1)
+    return interval + "d ago"
+
+  interval =
+  Math.floor(seconds / 3600)
+
+  if(interval > 1)
+    return interval + "h ago"
+
+  interval =
+  Math.floor(seconds / 60)
+
+  if(interval > 1)
+    return interval + "m ago"
+
+  return "Just now"
+}
+
+
   ${
-    new Date(
-      post.created_at
-    ).toLocaleString()
+    timeAgo(post.created_at)
   }
 
   </div>
@@ -602,8 +645,9 @@ ${
 
 <button
   onclick="addComment('${post.id}')"
+  class="comment-btn"
 >
-  Comment
+  💬 Comment
 </button>
 
 
@@ -907,12 +951,22 @@ async function uploadAvatar() {
   }
   
   // Update all old posts too
+
+
+  await supabaseClient
+  .from("profiles")
+  .update({
+    username: username,
+    avatar_url: avatarUrl
+  })
+  .eq("id", currentUser.id)
+
+
   const { error: postError } =
   await supabaseClient
     .from("posts")
     .update({
-      username: username,
-      avatar_url: avatarUrl || avatarPreview.src
+      avatar_url: avatarUrl 
     })
     .eq("user_id", currentUser.id)
   

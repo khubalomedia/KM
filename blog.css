@@ -698,3 +698,21 @@
   display:block;
   margin-bottom:4px;
 }
+
+
+
+.feed-actions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.action-btn,
+.comment-btn{
+  border:none;
+  background:#1a1a1a;
+  color:white;
+  padding:8px 12px;
+  border-radius:20px;
+  cursor:pointer;
+}
