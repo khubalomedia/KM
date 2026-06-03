@@ -635,3 +635,18 @@
 .menu-action:hover{
   background:#ff1717;
 }
+
+
+
+.feed-time{
+  font-size:12px;
+  color:#888;
+}
+
+.action-btn{
+  background:none;
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}

@@ -394,6 +394,75 @@ async function createPost() {
 }
 
 
+
+//LIKES
+
+async function likePost(postId){
+
+  const {
+    data: post
+  } =
+  await supabaseClient
+  .from("posts")
+  .select("likes")
+  .eq("id", postId)
+  .single()
+
+  await supabaseClient
+  .from("posts")
+  .update({
+    likes:(post.likes || 0) + 1
+  })
+  .eq("id", postId)
+
+  loadPosts()
+
+}
+
+
+//COMMENTS
+
+async function addComment(postId){
+
+  if(!currentUser){
+    alert("Login first")
+    return
+  }
+
+  const input =
+  document.getElementById(
+    `comment-${postId}`
+  )
+
+  const text =
+  input.value.trim()
+
+  if(!text) return
+
+  const {
+    data: profile
+  } =
+  await supabaseClient
+  .from("profiles")
+  .select("username")
+  .eq("id", currentUser.id)
+  .single()
+
+  await supabaseClient
+  .from("comments")
+  .insert([
+    {
+      post_id: postId,
+      username: profile.username,
+      content: text
+    }
+  ])
+
+  loadPosts()
+
+}
+
+
 // LOAD POSTS
 async function loadPosts() {
 
@@ -450,7 +519,7 @@ async function loadPosts() {
     
       </div>
     
-      <p>
+<p>
   ${post.content}
 </p>
 
@@ -464,6 +533,51 @@ ${
   :
   ""
 }
+
+<div class="feed-actions">
+
+  <button
+    onclick="likePost('${post.id}')"
+    class="action-btn"
+  >
+    ❤️ ${post.likes || 0}
+  </button>
+
+</div>
+
+
+
+
+
+
+<div id="comments-${post.id}">
+</div>
+
+<input
+  id="comment-${post.id}"
+  placeholder="Write a comment..."
+>
+
+<button
+  onclick="addComment('${post.id}')"
+>
+  Comment
+</button>
+
+
+
+
+
+
+
+<div class="feed-time">
+  ${
+    new Date(
+      post.created_at
+    ).toLocaleString()
+  }
+</div>
+
     
     </div>
     `
