@@ -16,6 +16,9 @@ supabase.createClient(
 const contentInput =
 document.getElementById("content")
 
+const postImage =
+document.getElementById("postImage")
+
 const postBtn =
 document.getElementById("postBtn")
 
@@ -293,6 +296,8 @@ async function createPost() {
   const content =
   contentInput.value.trim()
 
+  let imageUrl = ""
+
   if (!content) {
 
     alert(
@@ -316,6 +321,41 @@ async function createPost() {
   .select("username, avatar_url")
   .eq("id", currentUser.id)
   .single()
+
+  if (
+    postImage.files &&
+    postImage.files[0]
+  ) {
+  
+    const file =
+    postImage.files[0]
+  
+    const filePath =
+    `${currentUser.id}/${Date.now()}_${file.name}`
+  
+    const {
+      error: uploadError
+    } =
+    await supabaseClient
+    .storage
+    .from("posts")
+    .upload(filePath, file)
+  
+    if(uploadError){
+      alert(uploadError.message)
+      return
+    }
+  
+    const { data } =
+    supabaseClient
+    .storage
+    .from("posts")
+    .getPublicUrl(filePath)
+  
+    imageUrl =
+    data.publicUrl
+  
+  }
   
   const { error } =
   await supabaseClient
@@ -325,7 +365,8 @@ async function createPost() {
       user_id: currentUser.id,
       username: profile?.username || currentUser.email,
       avatar_url: profile?.avatar_url || "",
-      content: content
+      content: content,
+      image_url: imageUrl
     }
   ])
 
@@ -410,8 +451,19 @@ async function loadPosts() {
       </div>
     
       <p>
-        ${post.content}
-      </p>
+  ${post.content}
+</p>
+
+${
+  post.image_url
+  ?
+  `<img
+    src="${post.image_url}"
+    class="feed-image"
+  >`
+  :
+  ""
+}
     
     </div>
     `
