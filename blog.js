@@ -476,6 +476,49 @@ async function addComment(postId){
 
 }
 
+function timeAgo(date){
+
+  const seconds =
+  Math.floor(
+    (new Date() - new Date(date))
+    / 1000
+  )
+
+  let interval =
+  Math.floor(seconds / 31536000)
+
+  if(interval > 1)
+    return interval + "y ago"
+
+  interval =
+  Math.floor(seconds / 2592000)
+
+  if(interval > 1)
+    return interval + "mo ago"
+
+  interval =
+  Math.floor(seconds / 86400)
+
+  if(interval > 1)
+    return interval + "d ago"
+
+  interval =
+  Math.floor(seconds / 3600)
+
+  if(interval > 1)
+    return interval + "h ago"
+
+  interval =
+  Math.floor(seconds / 60)
+
+  if(interval > 1)
+    return interval + "m ago"
+
+  return "Just now"
+}
+
+
+
 
 // LOAD POSTS
 async function loadPosts() {
@@ -544,55 +587,8 @@ async function loadPosts() {
       </div>
 
 
-      <div class="feed-time">
-
-
-function timeAgo(date){
-
-  const seconds =
-  Math.floor(
-    (new Date() - new Date(date))
-    / 1000
-  )
-
-  let interval =
-  Math.floor(seconds / 31536000)
-
-  if(interval > 1)
-    return interval + "y ago"
-
-  interval =
-  Math.floor(seconds / 2592000)
-
-  if(interval > 1)
-    return interval + "mo ago"
-
-  interval =
-  Math.floor(seconds / 86400)
-
-  if(interval > 1)
-    return interval + "d ago"
-
-  interval =
-  Math.floor(seconds / 3600)
-
-  if(interval > 1)
-    return interval + "h ago"
-
-  interval =
-  Math.floor(seconds / 60)
-
-  if(interval > 1)
-    return interval + "m ago"
-
-  return "Just now"
-}
-
-
-  ${
-    timeAgo(post.created_at)
-  }
-
+   <div class="feed-time">
+     ${ timeAgo(post.created_at)}
   </div>
 
 
@@ -956,7 +952,6 @@ async function uploadAvatar() {
   await supabaseClient
   .from("profiles")
   .update({
-    username: username,
     avatar_url: avatarUrl
   })
   .eq("id", currentUser.id)
