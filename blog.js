@@ -88,6 +88,21 @@ document.getElementById("saveProfileBtn")
 const avatarUpload =
 document.getElementById("avatarUpload")
 
+function toggleComments(postId){
+
+  const box =
+  document.getElementById(
+    `all-comments-${postId}`
+  )
+
+  if(box.style.display === "none"){
+    box.style.display = "block"
+  }else{
+    box.style.display = "none"
+  }
+
+}
+
 
 // AUTH STATE
 let currentUser = null
@@ -400,6 +415,8 @@ async function createPost() {
 
 async function likePost(postId){
 
+  
+
   const {
     data: post,
     error: fetchError
@@ -472,7 +489,24 @@ async function addComment(postId){
     }
   ])
 
-  loadPosts()
+
+  const commentsBox =
+document.querySelector(
+  `#comment-${postId}`
+).parentElement.querySelector(
+  ".comments"
+)
+
+commentsBox.innerHTML += `
+<div class="comment">
+  <b>${profile.username}</b>
+  <span>${text}</span>
+</div>
+`
+
+input.value = ""
+
+  
 
 }
 
@@ -592,6 +626,27 @@ async function loadPosts() {
   </div>
 
 
+  ${
+    currentUser &&
+    currentUser.id === post.user_id
+    ?
+    `
+    <button
+      type="button"
+      onclick="deletePost('${post.id}')"
+      class="delete-btn"
+    >
+      🗑 Delete
+    </button>
+    `
+    :
+    ""
+  }
+
+
+
+
+
 <p>
   ${post.content}
 </p>
@@ -612,24 +667,23 @@ ${
 <div class="feed-actions">
 
 <button
-  onclick="likePost(${post.id})"
+  type="button"
+  onclick="likePost('${post.id}')"
   class="action-btn"
 >
   ❤️ ${post.likes || 0} Likes
 </button>
 
-</div>
-
 
 <div class="comments">
-  ${
-    comments?.map(comment => `
+${
+  comments?.slice(0,1).map(comment => `
       <div class="comment">
         <b>${comment.username}</b>
         <span>${comment.content}</span>
       </div>
-    `).join("") || ""
-  }
+  `).join("") || ""
+}
 </div>
 
 
@@ -661,6 +715,30 @@ ${
   }
 
 }
+
+
+async function deletePost(postId){
+
+  if(
+    !confirm(
+      "Delete this post?"
+    )
+  ) return
+
+  const { error } =
+  await supabaseClient
+  .from("posts")
+  .delete()
+  .eq("id", postId)
+
+  if(error){
+    alert(error.message)
+    return
+  }
+
+  loadPosts()
+}
+
 
 
 // MENU
