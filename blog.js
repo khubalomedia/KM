@@ -959,11 +959,13 @@ async function uploadAvatar() {
 
   const { error: postError } =
   await supabaseClient
-    .from("posts")
-    .update({
-      avatar_url: avatarUrl 
-    })
-    .eq("user_id", currentUser.id)
+  .from("posts")
+  .update({
+    username: username,
+    avatar_url:
+      avatarUrl || avatarPreview.src
+  })
+  .eq("user_id", currentUser.id)
   
   if (postError) {
     alert(postError.message)
@@ -1072,19 +1074,13 @@ async function saveProfile(){
     error
   } =
   await supabaseClient
-  .from("posts")
-  .update({
-    username: username,
-    avatar_url: avatarUrl || avatarPreview.src
-  })
-  .eq("user_id", currentUser.id)
-
+    .from("profiles")
+    .update(updateData)
+    .eq("id", currentUser.id)
+  
   if(error){
-
     alert(error.message)
-
     return
-
   }
 
   await checkUser()
