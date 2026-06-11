@@ -13,28 +13,27 @@ const playlists = {
        title: "Fake Casting Agent - African Casting"
      },
  
-
- 
      {
-       videoId: "5NA25uOG5aA",
-       title: "Soka Campign With VibeFM"
-     },
-
-
-     {
-      videoId: "REvFwoDyBek",
-      title: "Acting For Camera - Begginer Tutorial"
+      videoId: "72TOgTtNvE4",
+      title: "Soka Campign With VibeFM"
     },
 
     {
-      videoId: "2YKPm9HMbWs",
-      title: "Young Creatives This Is Your Moment - Acting Workshop"
-    },
-
-    {
-      videoId: "78KRwANWc4E",
+      videoId: "V3_SkWqP8pQ",
       title: "Unlock Your Creativity - Acting Workshop"
     },
+
+    {
+      videoId:"REvFwoDyBek",
+      title:"Acting For Camera - Begginer Tutorial"
+      },
+      
+      {
+      videoId:"2YKPm9HMbWs",
+      title:"Young Creatives This Is Your Moment - Acting Workshop"
+      },
+ 
+     
 
     {
       videoId: "Tivk4nCSVfg",
@@ -58,7 +57,7 @@ const playlists = {
  
    ],
  
-   Cartoons: [
+   cartoons: [
  
      {
        videoId: "pAHuC9E_Axg",
@@ -122,16 +121,11 @@ const playlists = {
  
    ],
  
-   IZWI: [
+   musicvideos: [
  
     {
       videoId: "EQ5XdBCeEU0",
       title: "Lawisa - Maskandi Artist - E3 - P2"
-    },
-
-    {
-      videoId: "72TOgTtNvE4",
-      title: "Mhlekazi - Maskandi Artist - E2 - P1"
     },
 
     {
@@ -140,33 +134,39 @@ const playlists = {
     },
 
     {
-      videoId: "V3_SkWqP8pQ",
-      title: "Mhlekazi - Masikandi Artist - Episode 3 - Part 2"
+      videoId: "5NA25uOG5aA",
+      title: "Mhlekazi - Maskandi Artist - E2 - P1"
     },
 
+
     {
-      videoId:"REvFwoDyBek",
-      title:"Lawisa - Masikandi Artist - Episode 3 - Part 1"
-      },
-      
-      {
-      videoId:"2YKPm9HMbWs",
-      title:"Young Ross - Afro Pop Artist - Producer"
-      },
+     videoId: "REvFwoDyBek",
+     title: "Lawisa - Masikandi Artist - Episode 3 - Part 1"
+   },
+
+   {
+     videoId: "2YKPm9HMbWs",
+     title: "Young Ross - Afro Pop Artist - Producer"
+   },
+
+   {
+     videoId: "78KRwANWc4E",
+     title: "Mhlekazi - Masikandi Artist - Episode 3 - Part 2"
+   },
        
-       {
-       videoId:"78KRwANWc4E",
-       title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 3"
-       },
-       
-       {
-       videoId:"EQ5XdBCeEU0",
-       title:"Mhlekazi - Masikandi Artist"
-       },
+   {
+    videoId:"78KRwANWc4E",
+    title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 3"
+    },
+    
+    {
+    videoId:"EQ5XdBCeEU0",
+    title:"Mhlekazi - Masikandi Artist"
+    },
        
     
  
-   ]
+   ],
  
  };
  
