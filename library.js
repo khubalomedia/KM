@@ -19,20 +19,9 @@ const playlists = {
     },
 
     {
-      videoId: "V3_SkWqP8pQ",
-      title: "Unlock Your Creativity - Acting Workshop"
+      videoId: "QlqznFEUbBw",
+      title: "This Rap Battle Got Out Of Control"
     },
-
-    {
-      videoId:"REvFwoDyBek",
-      title:"Acting For Camera - Begginer Tutorial"
-      },
-      
-      {
-      videoId:"2YKPm9HMbWs",
-      title:"Young Creatives This Is Your Moment - Acting Workshop"
-      },
- 
      
 
     {
@@ -42,17 +31,17 @@ const playlists = {
 
     {
       videoId: "_ui2eYlhzNI",
-      title: "Nasty C Is My Bother Form Another Mother"
+      title: "Acting For Camera - Begginer Tutorial"
     },
 
     {
       videoId: "cXxhysTLe8U",
-      title: "Fake Casting Agent - African Casting"
+      title: "Young Creatives This Is Your Moment - Acting Workshop"
     },
 
     {
       videoId: "o5Rnrl8XudM",
-      title: "This Rap Battle Got Out Of Control"
+      title: "Unlock Your Creativity - Acting Workshop"
     },
  
    ],
@@ -125,13 +114,10 @@ const playlists = {
  
     {
       videoId: "EQ5XdBCeEU0",
-      title: "Lawisa - Maskandi Artist - E3 - P2"
+      title: "Mhlekazi - Maskandi Artist - Episode 2"
     },
 
-    {
-      videoId: "QlqznFEUbBw",
-      title: "Mhlekazi - Masikandi Artist - Episode 3"
-    },
+  
 
     {
       videoId: "5NA25uOG5aA",
