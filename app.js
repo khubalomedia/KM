@@ -7,6 +7,8 @@
 const playlists = {
 
   home: [
+
+   
   
   {
   videoId:"Tivk4nCSVfg",
@@ -25,163 +27,74 @@ const playlists = {
   
   {
   videoId:"QlqznFEUbBw",
-  title:"African Casting EXPOSED"
+  title:"This Rap Battle Got Out Of Control"
   },
   
   {
-  videoId:"V3_SkWqP8pQ",
-  title:"Latest Trending Show"
-  },
-  
-  {
-  videoId:"5NA25uOG5aA",
-  title:"South African Viral Story"
-  },
-  
-  {
-  videoId:"REvFwoDyBek",
-  title:"Podcast Episode"
-  },
-  
-  {
-  videoId:"2YKPm9HMbWs",
-  title:"Drama Investigation"
-  },
-
-
-  {
-   videoId:"C6DTlkL5u2I",
-   title:"Nasty C is my brother from another mother full"
-   },
-   
-   {
-   videoId:"9jW2X9q4wg0",
-   title:"Ivo Suzee EXPOSED? The Dark Truth"
-   },
-   
-   {
-   videoId:"78KRwANWc4E",
-   title:"Fruity Friends Truth or Truth"
-   },
-   
-   {
-   videoId:"EQ5XdBCeEU0",
-   title:"African Casting EXPOSED"
-   },
-   
-   {
-   videoId:"yu00Z9IRpB8",
-   title:"Latest Trending Show"
-   },
-   
-   {
    videoId:"72TOgTtNvE4",
-   title:"South African Viral Story"
+   title:"Soka Campign With VibeFM"
    },
    
    {
    videoId:"ii4-VAtg2fg",
-   title:"Podcast Episode"
+   title:"He Starved At School To Avoid Bullying"
    },
    
    {
    videoId:"_ui2eYlhzNI",
-   title:"Drama Investigation"
+   title:"Acting For Camera - Begginer Tutorial"
    },
 
    {
    videoId:"PVlnMl0jjyg",
-   title:"South African Viral Story"
+   title:"Trust Your Gift - Acting Workshop"
    },
       
    {
    videoId:"cXxhysTLe8U",
-   title:"Podcast Episode"
+   title:"Young Creatives This Is Your Moment - Acting Workshop"
    },
       
    {
    videoId:"o5Rnrl8XudM",
-   title:"Drama Investigation"
-   }
-  
-  ],
-  
-  musicvideos: [
-  
-  {
-  videoId:"9jW2X9q4wg0",
-  title:"Music Video 1"
-  },
-  
-  {
-  videoId:"C6DTlkL5u2I",
-  title:"Music Video 2"
-  },
-  
-  {
-  videoId:"podMgq2xSXM",
-  title:"Music Video 3"
-  },
-  
-  {
-  videoId:"Zzwwj2WBLnk",
-  title:"Music Video 4"
-  },
-  
-  {
-  videoId:"_Up2TCOa5S0",
-  title:"Music Video 5"
-  }
-  
-  ],
-  
-  cartoons: [
-  
-  {
-  videoId:"fg8uJ0GZ3jk",
-  title:"Cartoon Episode 1"
-  },
-  
-  {
-  videoId:"j9rRaQbLZLo",
-  title:"Cartoon Episode 2"
-  },
-  
-  {
-  videoId:"cNBdNIUkq2k",
-  title:"Cartoon Episode 3"
-  },
-  
-  {
-  videoId:"ii4-VAtg2fg",
-  title:"Cartoon Episode 4"
-  }
-  
-  ],
-  
-  talk: [
-  
-  {
-  videoId:"Tivk4nCSVfg",
-  title:"Talk Show 1"
-  },
-  
-  {
-  videoId:"S4vNf6UNs8E",
-  title:"Talk Show 2"
-  },
-  
-  {
-  videoId:"QlqznFEUbBw",
-  title:"Talk Show 3"
-  },
-  
+   title:"Unlock Your Creativity - Acting Workshop"
+   },
+
   {
   videoId:"V3_SkWqP8pQ",
-  title:"Talk Show 4"
-  }
+  title:"Lawisa - Masikandi Artist - Episode 3 - Part 2"
+  },
   
-  ]
+  {
+  videoId:"5NA25uOG5aA",
+  title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 1"
+  },
+  
+  {
+  videoId:"REvFwoDyBek",
+  title:"Lawisa - Masikandi Artist - Episode 3 - Part 1"
+  },
+  
+  {
+  videoId:"2YKPm9HMbWs",
+  title:"Young Ross - Afro Pop Artist - Producer"
+  },
+   
+   {
+   videoId:"78KRwANWc4E",
+   title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 3"
+   },
+   
+   {
+   videoId:"EQ5XdBCeEU0",
+   title:"Mhlekazi - Masikandi Artist"
+   },
+   
+
+  
+  ],
+  
+ 
   
   };
   
