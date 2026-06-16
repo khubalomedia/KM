@@ -8,7 +8,10 @@ const playlists = {
 
   home: [
 
-   
+   {
+      videoId: "ZE-sWzZx0VM",
+      title: "ChatGPT Explained for South African Students | Beginner's Guide 2026"
+    },
   
   {
   videoId:"Tivk4nCSVfg",

@@ -6,12 +6,23 @@
 
 const playlists = {
 
-   talk: [
+
+  educational: [
  
-     {
-       videoId: "S4vNf6UNs8E",
-       title: "Fake Casting Agent - African Casting"
-     },
+    {
+      videoId: "ZE-sWzZx0VM",
+      title: "ChatGPT Explained for South African Students | Beginner's Guide 2026"
+    },
+
+    {
+      videoId: "S4vNf6UNs8E",
+      title: "Fake Casting Agent - African Casting"
+    },
+
+  ],
+
+
+   talk: [
  
      {
       videoId: "72TOgTtNvE4",
@@ -47,6 +58,12 @@ const playlists = {
    ],
  
    cartoons: [
+
+    {
+      videoId: "ryA419P7Z1Q",
+      title: "I'm Not A Berry - Fruity Friends"
+    },
+
  
      {
        videoId: "pAHuC9E_Axg",
@@ -110,7 +127,7 @@ const playlists = {
  
    ],
  
-   musicvideos: [
+   izwi: [
  
     {
       videoId: "EQ5XdBCeEU0",
@@ -188,6 +205,11 @@ const playlists = {
  /* LOAD ALL VIDEOS */
  
  function loadAll() {
+
+  displayVideos(
+    playlists.educational,
+    "row-educational"
+  );
  
    displayVideos(
      playlists.talk,
@@ -200,8 +222,8 @@ const playlists = {
    );
  
    displayVideos(
-     playlists.musicvideos,
-     "row-musicvideos"
+     playlists.izwi,
+     "row-izwi"
    );
  
  }
