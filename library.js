@@ -8,26 +8,34 @@ const playlists = {
 
 
   educational: [
- 
-    {
-      videoId: "ZE-sWzZx0VM",
-      title: "ChatGPT Explained for South African Students | Beginner's Guide 2026"
-    },
 
     {
       videoId: "S4vNf6UNs8E",
       title: "Fake Casting Agent - African Casting"
     },
+ 
+    {
+      videoId: "23ENrmIoCfs",
+      title: "South Africa's 2029 Election Could Change Everything"
+    },
+
+    {
+      videoId: "E0ElvFfV6U4",
+      title: "The History of Maize | How It Changed Africa"
+    }, 
+    
+    {
+      videoId: "ZE-sWzZx0VM",
+      title: "ChatGPT Explained for South African Students | Beginner's Guide 2026"
+    },
+
 
   ],
 
 
    talk: [
  
-     {
-      videoId: "72TOgTtNvE4",
-      title: "Soka Campign With VibeFM"
-    },
+
 
     {
       videoId: "QlqznFEUbBw",
@@ -40,19 +48,10 @@ const playlists = {
       title: "Nasty C Is My Bother Form Another Mother"
     },
 
-    {
-      videoId: "_ui2eYlhzNI",
-      title: "Acting For Camera - Begginer Tutorial"
-    },
 
     {
-      videoId: "cXxhysTLe8U",
-      title: "Young Creatives This Is Your Moment - Acting Workshop"
-    },
-
-    {
-      videoId: "o5Rnrl8XudM",
-      title: "Unlock Your Creativity - Acting Workshop"
+      videoId: "z0Ito0_XF_8",
+      title: "Young Ross - Producer - Nkabi Record - Amaphiko"
     },
  
    ],
@@ -127,47 +126,25 @@ const playlists = {
  
    ],
  
-   izwi: [
+   trailer: [
  
     {
-      videoId: "EQ5XdBCeEU0",
-      title: "Mhlekazi - Maskandi Artist - Episode 2"
+      videoId: "ONytvK1G9fY",
+      title: "Young Ross - Producer - Nkabi Record - Amaphiko - Trailer"
     },
 
-  
-
     {
-      videoId: "5NA25uOG5aA",
-      title: "Mhlekazi - Maskandi Artist - E2 - P1"
+      videoId: "OwWlrcgZJF0",
+      title: "Mhlekazi - Masikandi Artist - Trailer"
     },
 
 
     {
      videoId: "REvFwoDyBek",
-     title: "Lawisa - Masikandi Artist - Episode 3 - Part 1"
+     title: "Lawisa - Masikandi Artist - Trailer"
    },
 
-   {
-     videoId: "2YKPm9HMbWs",
-     title: "Young Ross - Afro Pop Artist - Producer"
-   },
-
-   {
-     videoId: "78KRwANWc4E",
-     title: "Mhlekazi - Masikandi Artist - Episode 3 - Part 2"
-   },
-       
-   {
-    videoId:"78KRwANWc4E",
-    title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 3"
-    },
-    
-    {
-    videoId:"EQ5XdBCeEU0",
-    title:"Mhlekazi - Masikandi Artist"
-    },
-       
-    
+   
  
    ],
  
@@ -222,8 +199,8 @@ const playlists = {
    );
  
    displayVideos(
-     playlists.izwi,
-     "row-izwi"
+     playlists.trailer,
+     "row-trailer"
    );
  
  }

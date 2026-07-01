@@ -8,11 +8,6 @@ const playlists = {
 
   home: [
 
-   {
-      videoId: "ZE-sWzZx0VM",
-      title: "ChatGPT Explained for South African Students | Beginner's Guide 2026"
-    },
-  
   {
   videoId:"Tivk4nCSVfg",
   title:"Nasty C is my brother from another mother full"
@@ -22,7 +17,22 @@ const playlists = {
   videoId:"S4vNf6UNs8E",
   title:"Ivo Suzee EXPOSED? The Dark Truth"
   },
+
+  {
+  videoId: "ZE-sWzZx0VM",
+  title: "ChatGPT Explained for South African Students | Beginner's Guide 2026"
+  },
   
+  {
+  videoId:"OwWlrcgZJF0",
+  title:"Mhlekazi - Masikandi Artist - Trailer"
+  },
+
+  {
+  videoId:"ONytvK1G9fY",
+  title:"Young Ross - Producer - Nkabi Record - Amaphiko - Trailer"
+  },
+
   {
   videoId:"pAHuC9E_Axg",
   title:"Fruity Friends Truth or Truth"
@@ -32,69 +42,17 @@ const playlists = {
   videoId:"QlqznFEUbBw",
   title:"This Rap Battle Got Out Of Control"
   },
-  
-  {
-   videoId:"72TOgTtNvE4",
-   title:"Soka Campign With VibeFM"
-   },
    
    {
    videoId:"ii4-VAtg2fg",
    title:"He Starved At School To Avoid Bullying"
    },
-   
-   {
-   videoId:"_ui2eYlhzNI",
-   title:"Acting For Camera - Begginer Tutorial"
-   },
 
    {
-   videoId:"PVlnMl0jjyg",
-   title:"Trust Your Gift - Acting Workshop"
-   },
-      
-   {
-   videoId:"cXxhysTLe8U",
-   title:"Young Creatives This Is Your Moment - Acting Workshop"
-   },
-      
-   {
-   videoId:"o5Rnrl8XudM",
-   title:"Unlock Your Creativity - Acting Workshop"
-   },
+      videoId: "ryA419P7Z1Q",
+      title: "I'm Not A Berry - Fruity Friends"
+    },
 
-  {
-  videoId:"V3_SkWqP8pQ",
-  title:"Lawisa - Masikandi Artist - Episode 3 - Part 2"
-  },
-  
-  {
-  videoId:"5NA25uOG5aA",
-  title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 1"
-  },
-  
-  {
-  videoId:"REvFwoDyBek",
-  title:"Lawisa - Masikandi Artist - Episode 3 - Part 1"
-  },
-  
-  {
-  videoId:"2YKPm9HMbWs",
-  title:"Young Ross - Afro Pop Artist - Producer"
-  },
-   
-   {
-   videoId:"78KRwANWc4E",
-   title:"Mhlekazi - Masikandi Artist - Episode 2 - Part 3"
-   },
-   
-   {
-   videoId:"EQ5XdBCeEU0",
-   title:"Mhlekazi - Masikandi Artist"
-   },
-   
-
-  
   ],
   
  
