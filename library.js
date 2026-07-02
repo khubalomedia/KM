@@ -34,24 +34,25 @@ const playlists = {
 
 
    talk: [
- 
-
 
     {
-      videoId: "QlqznFEUbBw",
-      title: "This Rap Battle Got Out Of Control"
+      videoId: "z0Ito0_XF_8",
+      title: "Young Ross - Producer - Nkabi Record - Amaphiko"
     },
-     
+
+    {
+      videoId: "o_Zowc8eO90",
+      title: "Mhlekazi - Masikandi Artist - Interview"
+    },
 
     {
       videoId: "Tivk4nCSVfg",
       title: "Nasty C Is My Bother Form Another Mother"
     },
 
-
     {
-      videoId: "z0Ito0_XF_8",
-      title: "Young Ross - Producer - Nkabi Record - Amaphiko"
+      videoId: "QlqznFEUbBw",
+      title: "This Rap Battle Got Out Of Control"
     },
  
    ],
