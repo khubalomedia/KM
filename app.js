@@ -34,6 +34,11 @@ const playlists = {
   },
 
   {
+    videoId:"cYup8Xd8i_U",
+    title:"Lawisa - Masikandi Artist - Trailer"
+    },
+
+  {
   videoId:"pAHuC9E_Axg",
   title:"Fruity Friends Truth or Truth"
   },

@@ -46,6 +46,11 @@ const playlists = {
     },
 
     {
+      videoId: "XvhCbD5sPec",
+      title: "Lawisa Zulu - Masikandi Artist - Interview"
+    },
+
+    {
       videoId: "Tivk4nCSVfg",
       title: "Nasty C Is My Bother Form Another Mother"
     },
@@ -141,7 +146,7 @@ const playlists = {
 
 
     {
-     videoId: "REvFwoDyBek",
+     videoId: "cYup8Xd8i_U",
      title: "Lawisa - Masikandi Artist - Trailer"
    },
 
