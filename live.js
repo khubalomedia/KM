@@ -35,67 +35,27 @@ player.src =
 
 }
 
-/* ==========================
-   PLAY VIDEO
-========================== */
 
-function playVideo(index){
+function toggleMenu() {
+   document.getElementById("dropdownMenu").classList.toggle("active");
+}
 
-currentIndex = index;
 
-const video = videos[index];
 
-player.src =
-`https://www.youtube.com/embed/${video.videoId}?autoplay=1&rel=0`;
+document.addEventListener("click", function(e){
 
-saveLastVideo();
+   const menu=document.getElementById("dropdownMenu");
+   const button=document.querySelector(".menu-btn");
 
-updateUpNext();
+   if(!menu.contains(e.target) && !button.contains(e.target)){
 
-window.scrollTo({
+       menu.classList.remove("active");
 
-top:0,
-
-behavior:"smooth"
+   }
 
 });
 
-}
 
-/* ==========================
-   VIDEO GRID
-========================== */
-
-function loadVideos(){
-
-videoGrid.innerHTML="";
-
-videos.forEach((video,index)=>{
-
-const card =
-document.createElement("div");
-
-card.className="video-card";
-
-card.innerHTML=`
-
-<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg">
-
-<h3>${video.title}</h3>
-
-`;
-
-card.onclick=()=>{
-
-playVideo(index);
-
-};
-
-videoGrid.appendChild(card);
-
-});
-
-}
 
 
 
@@ -146,8 +106,3 @@ checkLive();
 
 checkLive();
 
-loadVideos();
-
-loadLastVideo();
-
-updateUpNext();

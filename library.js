@@ -427,6 +427,21 @@ const playlists = {
      );
  
  }
+
+
+ document.addEventListener("click", function(e){
+
+  const menu=document.getElementById("dropdownMenu");
+  const button=document.querySelector(".menu-btn");
+
+  if(!menu.contains(e.target) && !button.contains(e.target)){
+
+      menu.classList.remove("active");
+
+  }
+
+});
+
  
  /* START */
  
