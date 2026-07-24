@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BaloTV Live</title>
+
+<link rel="stylesheet" href="live.css">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#d60000">
+
+<link rel="icon" href="images/balotv-logo-1.png">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+  <!-- MENU BUTTON -->
+
+  <div
+    class="menu-btn"
+    onclick="toggleMenu()"
+  >
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </div>
+
+  <!-- DROPDOWN -->
+
+  <div
+    class="dropdown-menu"
+    id="dropdownMenu"
+  >
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="about.html">
+      Submit Content
+    </a>
+
+    <a href="terms.html">
+      Terms
+    </a>
+
+  </div>
+
+  <!-- LOGO -->
+
+  <div class="logo">
+
+    <img
+      src="images/balotv-logo.png"
+      alt="BaloTV"
+    >
+
+  </div>
+
+
+
+</header>
+
+
+
+<!-- LIVE PLAYER -->
+
+<section class="player-section">
+
+    <h2 class="section-title">
+
+        🔴 LIVE NOW
+
+    </h2>
+
+    <div class="player-wrapper">
+
+        <iframe
+
+            id="livePlayer"
+
+            src=""
+
+            allowfullscreen
+
+            allow="autoplay; encrypted-media"
+
+        ></iframe>
+
+    </div>
+
+</section>
+
+<!-- OFF AIR -->
+
+<section id="offlineScreen">
+
+    <div class="offline-box">
+
+        <h2>
+
+            📺 CURRENTLY OFF AIR
+
+        </h2>
+
+        <p>
+
+            There is no live broadcast at the moment.
+
+        </p>
+
+        <p>
+
+            Please check back later.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="live-schedule">
+
+    <h2>Today's Schedule</h2>
+    
+    <div class="schedule-card">
+    
+    <p><strong>09:00</strong> Morning News</p>
+    
+    <p><strong>12:00</strong> Interviews</p>
+    
+    <p><strong>18:00</strong> 🔴 LIVE Broadcast</p>
+    
+    <p><strong>20:00</strong> Entertainment</p>
+    
+    </div>
+    
+    </section>
+
+
+  <!-- MOBILE NAV -->
+
+  <div class="mobile-nav">
+
+    <button
+      class="mobile-nav-btn active"
+      onclick="window.location.href='index.html'"
+    >
+      Home
+    </button>
+
+    <button
+      class="mobile-nav-btn"
+      onclick="window.location.href='library.html'"
+    >
+      Library
+    </button>
+
+    <button
+      class="mobile-nav-btn"
+      onclick="window.location.href='blog.html'"
+    >
+      Live
+    </button>
+
+  </div>
+
+
+
+
+<script src="live.js"></script>
+
+</body>
+</html>
