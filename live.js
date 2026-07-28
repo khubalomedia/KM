@@ -1,8 +1,3 @@
-/* =====================================
-   BaloTV
-   app.js
-   No YouTube API
-===================================== */
 
 // Replace with YOUR YouTube Channel ID
 const CHANNEL_ID = "UC5reF0zkdOnB3GEpVqNJfHw";
@@ -90,6 +85,40 @@ offline.style.display="none";
 
 }
 
+
+
+// true = phone vertical stream
+// false = landscape stream
+const VERTICAL_STREAM = true;
+
+
+function setPlayerMode(){
+
+   const wrapper = document.querySelector(".player-wrapper");
+
+   if(VERTICAL_STREAM){
+       wrapper.classList.add("vertical-mode");
+   }else{
+       wrapper.classList.remove("vertical-mode");
+   }
+
+}
+
+
+
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const wrapper = document.querySelector(".player-wrapper");
+
+fullscreenBtn.addEventListener("click", () => {
+
+    if (!document.fullscreenElement) {
+        wrapper.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+
+});
+
 /* ==========================
    AUTO REFRESH
 ========================== */
@@ -105,4 +134,6 @@ checkLive();
 ========================== */
 
 checkLive();
+
+setPlayerMode();
 
