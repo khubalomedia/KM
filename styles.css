@@ -941,3 +941,59 @@ body{
   }
 
 }
+
+
+
+
+/* ===============================
+   UP NEXT
+================================ */
+
+.up-next-title{
+  margin:30px 0 20px;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.up-next-list{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.up-next-card{
+  display:flex;
+  flex-direction:column;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.up-next-card:hover{
+  transform:translateY(-3px);
+}
+
+.up-next-card img{
+  width:100%;
+  border-radius:16px;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+
+.up-next-info{
+  padding:12px 5px;
+}
+
+.up-next-info h3{
+  font-size:19px;
+  margin-bottom:8px;
+  color:white;
+}
+
+.up-next-meta{
+  color:#999;
+  font-size:14px;
+}
+
+.up-next-card.active img{
+  border:3px solid #ff0000;
+}

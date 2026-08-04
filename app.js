@@ -277,6 +277,8 @@ const playlists = {
 
   playerSection.classList.remove("hidden");
 
+  updatePlayerQueue();
+
   player.src =
     `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1`;
 
@@ -301,6 +303,51 @@ const playlists = {
   );
 
 }
+
+
+
+function updatePlayerQueue(){
+
+  const queue=document.getElementById("playerQueue");
+
+  queue.innerHTML="";
+
+  currentPlaylist.forEach((video,index)=>{
+
+      if(index===currentIndex) return;
+
+      const card=document.createElement("div");
+
+      card.className="up-next-card";
+
+      card.innerHTML=`
+
+      <img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg">
+
+      <div class="up-next-info">
+
+          <h3>${video.title}</h3>
+
+
+      </div>
+
+      `;
+
+      card.onclick=()=>{
+
+          currentIndex=index;
+
+          playVideo(video.videoId,video.title);
+
+      };
+
+      queue.appendChild(card);
+
+  });
+
+}
+
+
  
  /* LOAD LAST PLAYED */
  
