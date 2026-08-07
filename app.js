@@ -448,60 +448,60 @@ function updatePlayerQueue(){
      playPrevious
    );
  
- /* SEARCH */
- 
- document
-   .getElementById("searchInput")
-   .addEventListener(
-     "input",
-     function () {
- 
-       const value =
-         this.value.toLowerCase();
- 
-       const cards =
-         document.querySelectorAll(
-           ".video-card"
-         );
- 
-         document.getElementById("searchInput").addEventListener("input", function () {
+/* SEARCH */
 
-          const value = this.value.toLowerCase();
-      
-          const rows = [
-              "educational",
-              "talk",
-              "cartoons",
-              "trailer"
-          ];
-      
-          rows.forEach(name => {
-      
-              const row = document.getElementById("row-" + name);
-      
-              // Section that contains the heading + row
-              const section = row.closest("section");
-      
-              let visible = 0;
-      
-              row.querySelectorAll(".video-card").forEach(card => {
-      
-                  const match = card.innerText.toLowerCase().includes(value);
-      
-                  card.style.display = match ? "" : "none";
-      
-                  if (match) visible++;
-      
-              });
-      
-              section.style.display = visible ? "" : "none";
-      
-          });
-      
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+
+  searchInput.addEventListener("input", function () {
+
+    const value = this.value.toLowerCase().trim();
+
+    const rows = [
+      "educational",
+      "talk",
+      "cartoons",
+      "trailer"
+    ];
+
+    rows.forEach(name => {
+
+      const row = document.getElementById("row-" + name);
+
+      if (!row) return;
+
+      const section = row.closest("section");
+
+      let visible = 0;
+
+      row.querySelectorAll(".video-card").forEach(card => {
+
+        const title = card
+          .querySelector("h4")
+          ?.innerText
+          .toLowerCase() || "";
+
+        const match = title.includes(value);
+
+        card.style.display = match ? "" : "none";
+
+        if (match) {
+          visible++;
+        }
+
       });
- 
-     }
-   );
+
+      if (section) {
+        section.style.display =
+          visible > 0 ? "" : "none";
+      }
+
+    });
+
+  });
+
+}
  
  /* SERVICE WORKER */
  
@@ -533,39 +533,7 @@ function updatePlayerQueue(){
 
 
 
-function playNext() {
 
-  if (
-    currentIndex <
-    currentPlaylist.length - 1
-  ) {
-
-    currentIndex++;
-
-    const nextVideo =
-      currentPlaylist[currentIndex];
-
-    playVideo(
-      nextVideo.videoId,
-      nextVideo.title
-    );
-
-  } else {
-
-    // Restart from the beginning of the same category
-    currentIndex = 0;
-
-    const firstVideo =
-      currentPlaylist[currentIndex];
-
-    playVideo(
-      firstVideo.videoId,
-      firstVideo.title
-    );
-
-  }
-
-}
 
 
  
