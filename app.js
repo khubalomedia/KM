@@ -10,6 +10,11 @@ const playlists = {
   educational: [
 
     {
+      videoId: "fBE8o2MpZxU",
+      title: "Why Are Women Still Getting Killed In South Africa "
+    },
+
+    {
       videoId: "S4vNf6UNs8E",
       title: "Fake Casting Agent - African Casting"
     },
@@ -65,6 +70,11 @@ const playlists = {
       videoId: "QlqznFEUbBw",
       title: "This Rap Battle Got Out Of Control"
     },
+
+    {
+      videoId: "VQ4eHNjPUbE",
+      title: "Ntambanana Artist"
+    },
  
    ],
  
@@ -80,30 +90,15 @@ const playlists = {
        videoId: "pAHuC9E_Axg",
        title: "Truth Or Truth - Fruity Friends"
      },
- 
-     {
-       videoId: "fg8uJ0GZ3jk",
-       title: "IskhathiSes'phithisphithi KwaMthembu - E1"
-     },
- 
-     {
-       videoId: "j9rRaQbLZLo",
-       title: "IskhathiSes'phithisphithi KwaMthembu - E2"
-     },
 
+     {
+      videoId: "gv5RNibH_cw",
+      title: "Truth Or Truth - Fruity Friends"
+    },
+ 
      {
       videoId: "cNBdNIUkq2k",
       title: "Story Time"
-    },
-
-    {
-      videoId: "ii4-VAtg2fg",
-      title: "He Starved At School To Avoid Bullying"
-    },
-
-    {
-      videoId: "e9ODdIf_tOU",
-      title: "IskhathiSes'phithisphithi KwaMthembu - E2"
     },
 
     {
@@ -111,50 +106,58 @@ const playlists = {
       title: "KFC Hist"
     },
 
-    {
-      videoId: "SGWahTOOgHo",
-      title: "IskhathiSes'phithisphithi KwaMthembu - E1"
-    },
 
-    {
-      videoId: "ogK4XR-0ho4",
-      title: "IskhathiSes'phithisphithi KwaMthembu - E2"
-    },
 
-    {
-     videoId: "gv5RNibH_cw",
-     title: "Truth Or Truth - Fruity Friends"
-   },
 
-   {
-     videoId: "yR9eY07X0Hc",
-     title: "IskhathiSes'phithisphithi KwaMthembu - E1"
-   },
-
-   {
-     videoId: "9nons4kJfFY",
-     title: "IskhathiSes'phithisphithi KwaMthembu - E2"
-   }
  
    ],
  
-   trailer: [
+   IskhathiSesphithisphithiKwaMthembu: [
  
     {
-      videoId: "ONytvK1G9fY",
-      title: "Young Ross - Producer - Nkabi Record - Amaphiko - Trailer"
+      videoId: "fg8uJ0GZ3jk",
+      title: "Iskhathi Ses'phithisphithi KwaMthembu - E1"
     },
 
     {
-      videoId: "OwWlrcgZJF0",
-      title: "Mhlekazi - Masikandi Artist - Trailer"
+      videoId: "j9rRaQbLZLo",
+      title: "Iskhathi Ses'phithisphithi KwaMthembu - E2"
     },
 
 
-    {
-     videoId: "cYup8Xd8i_U",
-     title: "Lawisa - Masikandi Artist - Trailer"
+   {
+     videoId: "ii4-VAtg2fg",
+     title: "He Starved At School To Avoid Bullying"
    },
+
+   {
+     videoId: "e9ODdIf_tOU",
+     title: "IskhathiSes'phithisphithi KwaMthembu"
+   },
+
+
+
+   {
+     videoId: "SGWahTOOgHo",
+     title: "IskhathiSes'phithisphithi KwaMthembu"
+   },
+
+   {
+     videoId: "ogK4XR-0ho4",
+     title: "IskhathiSes'phithisphithi KwaMthembu"
+   },
+
+
+
+  {
+    videoId: "yR9eY07X0Hc",
+    title: "IskhathiSes'phithisphithi KwaMthembu"
+  },
+
+  {
+    videoId: "9nons4kJfFY",
+    title: "IskhathiSes'phithisphithi KwaMthembu"
+  }
 
    
  
@@ -211,8 +214,8 @@ const playlists = {
    );
  
    displayVideos(
-     playlists.trailer,
-     "row-trailer"
+     playlists.IskhathiSesphithisphithiKwaMthembu,
+     "row-IskhathiSesphithisphithiKwaMthembu"
    );
  
  }
