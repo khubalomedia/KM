@@ -78,7 +78,14 @@ const playlists = {
  
    ],
  
+
+   
    cartoons: [
+
+    {
+      videoId: "ii4-VAtg2fg",
+      title: "He Starved At School To Avoid Bullying"
+    },
 
     {
       videoId: "ryA419P7Z1Q",
@@ -90,11 +97,6 @@ const playlists = {
        videoId: "pAHuC9E_Axg",
        title: "Truth Or Truth - Fruity Friends"
      },
-
-     {
-      videoId: "gv5RNibH_cw",
-      title: "Truth Or Truth - Fruity Friends"
-    },
  
      {
       videoId: "cNBdNIUkq2k",
@@ -107,8 +109,6 @@ const playlists = {
     },
 
 
-
-
  
    ],
  
@@ -116,52 +116,93 @@ const playlists = {
  
     {
       videoId: "fg8uJ0GZ3jk",
-      title: "Iskhathi Ses'phithisphithi KwaMthembu - E1"
+      title: "16 Days Of Activism"
     },
 
     {
       videoId: "j9rRaQbLZLo",
-      title: "Iskhathi Ses'phithisphithi KwaMthembu - E2"
+      title: "Siya Kumemulo"
     },
-
-
-   {
-     videoId: "ii4-VAtg2fg",
-     title: "He Starved At School To Avoid Bullying"
-   },
 
    {
      videoId: "e9ODdIf_tOU",
-     title: "IskhathiSes'phithisphithi KwaMthembu"
+     title: "Yin Iyouth Day"
    },
-
-
 
    {
      videoId: "SGWahTOOgHo",
-     title: "IskhathiSes'phithisphithi KwaMthembu"
+     title: "Stop GBV"
    },
 
    {
      videoId: "ogK4XR-0ho4",
-     title: "IskhathiSes'phithisphithi KwaMthembu"
+     title: "Freedom Day"
    },
-
-
 
   {
     videoId: "yR9eY07X0Hc",
-    title: "IskhathiSes'phithisphithi KwaMthembu"
+    title: "Yini Isithembu"
   },
 
   {
     videoId: "9nons4kJfFY",
-    title: "IskhathiSes'phithisphithi KwaMthembu"
-  }
+    title: "Heritage Day"
+  },
 
+  {
+    videoId: "gv5RNibH_cw",
+    title: "Breast Cancer Month"
+  },
    
  
    ],
+
+  
+ 
+  Shorts: [
+
+   {
+     videoId: "1PanUL6bXh0",
+     title: "Bekum'nand Izol Eb'suk Ekonka _ Mhlekazi "
+   },
+
+   {
+     videoId: "i_SbgeIbvAI",
+     title: "Seng'linde Ngalinda Lut uk'buya Dali _ Mhlekazi"
+   },
+
+
+  {
+    videoId: "fFz3bYhYN78",
+    title: "Mhlekazi _ Mas'kandi Artist "
+  },
+
+  {
+    videoId: "bOOTThXCFSQ",
+    title: "Young Ross _ Afro Pop Artist and Producer"
+  },
+
+
+
+  {
+    videoId: "mwJCYlWtyp4",
+    title: "Lawisa Zulu _ Mas'kandi Artist "
+  },
+
+  {
+    videoId: "97c7tDrqfYU",
+    title: "Ibhola Labafana _ Lawisa Zulu "
+  },
+
+
+
+
+
+  
+
+  ],
+
+   
  
  };
  
@@ -218,6 +259,10 @@ const playlists = {
      "row-IskhathiSesphithisphithiKwaMthembu"
    );
  
+   displayVideos(
+    playlists.Shorts,
+    "row-Shorts"
+  );
  }
  
  /* DISPLAY VIDEOS */
@@ -254,9 +299,7 @@ const playlists = {
      
          <h4>${video.title}</h4>
      
-         <p class="watch-label">
-           ▶ Watch now
-         </p>
+
      
        </div>
      `;
