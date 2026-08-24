@@ -10,8 +10,13 @@ const playlists = {
   educational: [
 
     {
+      videoId: "8UWAlJm-SKI",
+      title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
+    },
+
+    {
       videoId: "fBE8o2MpZxU",
-      title: "Why Are Women Still Getting Killed In South Africa "
+      title: "Why Are Women Still Getting Killed In South Africa"
     },
 
     {
@@ -167,14 +172,8 @@ const playlists = {
    },
 
    {
-     videoId: "i_SbgeIbvAI",
-     title: "Seng'linde Ngalinda Lut uk'buya Dali _ Mhlekazi"
-   },
-
-
-  {
-    videoId: "fFz3bYhYN78",
-    title: "Mhlekazi _ Mas'kandi Artist "
+    videoId: "-dWXQy-DRJo",
+    title: "Aze Amahl AmaBhinca _ Lawisa Zulu"
   },
 
   {
@@ -182,6 +181,21 @@ const playlists = {
     title: "Young Ross _ Afro Pop Artist and Producer"
   },
 
+
+   {
+     videoId: "i_SbgeIbvAI",
+     title: "Seng'linde Ngalinda Lut uk'buya Dali _ Mhlekazi"
+   },
+
+   {
+    videoId: "k3w8Fgk-W24",
+    title: "Yonk Intoyam Iyi_Bhinca _ Lawisa Zulu"
+  },
+
+  {
+    videoId: "fFz3bYhYN78",
+    title: "Mhlekazi _ Mas'kandi Artist "
+  },
 
 
   {
