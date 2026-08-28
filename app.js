@@ -10,7 +10,7 @@ const playlists = {
   educational: [
 
     {
-      videoId: "8UWAlJm-SKI",
+      videoId: "8YR3BxEqegRg",
       title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
     },
 
