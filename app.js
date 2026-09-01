@@ -10,6 +10,11 @@ const playlists = {
   educational: [
 
     {
+      videoId: "r_InbjC64yQ",
+      title: "From TikTok To Fame _ TYLA, TITOM, YUPPE"
+    },
+
+    {
       videoId: "YR3BxEqegRg",
       title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
     },
