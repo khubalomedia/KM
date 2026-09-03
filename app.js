@@ -6,8 +6,7 @@
 
 const playlists = {
 
-
-  educational: [
+  recommended: [
 
     {
       videoId: "r_InbjC64yQ",
@@ -18,6 +17,31 @@ const playlists = {
       videoId: "YR3BxEqegRg",
       title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
     },
+
+    {
+      videoId: "S4vNf6UNs8E",
+      title: "Fake Casting Agent - African Casting"
+    },
+
+  ],
+
+  fttf: [
+
+    {
+      videoId: "r_InbjC64yQ",
+      title: "From TikTok To Fame _ TYLA, TITOM, YUPPE"
+    },
+
+    {
+      videoId: "YR3BxEqegRg",
+      title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
+    },
+
+  ],
+
+
+
+  educational: [
 
     {
       videoId: "fBE8o2MpZxU",
@@ -257,6 +281,16 @@ const playlists = {
  /* LOAD ALL VIDEOS */
  
  function loadAll() {
+
+  displayVideos(
+    playlists.recommended,
+    "row-recommended"
+  );
+
+  displayVideos(
+    playlists.fttf,
+    "row-fttf"
+  );
 
   displayVideos(
     playlists.educational,
