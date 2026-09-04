@@ -267,10 +267,7 @@ const playlists = {
      "video-player"
    );
  
- const videoTitle =
-   document.getElementById(
-     "video-title"
-   );
+
  
  /* HIDE PLAYER INITIALLY */
  
@@ -387,9 +384,7 @@ const playlists = {
   player.src =
     `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1`;
 
-  document
-    .getElementById("video-title")
-    .innerText = title;
+
 
   // Show videos from the same category in Up Next
   updatePlayerQueue();
