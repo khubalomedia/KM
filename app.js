@@ -9,6 +9,11 @@ const playlists = {
   recommended: [
 
     {
+      videoId: "S4vNf6UNs8E",
+      title: "Fake Casting Agent - African Casting"
+    },
+
+    {
       videoId: "r_InbjC64yQ",
       title: "From TikTok To Fame _ TYLA, TITOM, YUPPE"
     },
@@ -19,9 +24,11 @@ const playlists = {
     },
 
     {
-      videoId: "S4vNf6UNs8E",
-      title: "Fake Casting Agent - African Casting"
+      videoId: "ppZY9b2f0Hw",
+      title: "From TikTok To Fame _ Khaby lame, Addison Rae and Zach King"
     },
+
+
 
   ],
 
@@ -35,6 +42,11 @@ const playlists = {
     {
       videoId: "YR3BxEqegRg",
       title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
+    },
+
+    {
+      videoId: "ppZY9b2f0Hw",
+      title: "From TikTok To Fame _ Khaby lame, Addison Rae and Zach King"
     },
 
   ],
