@@ -997,3 +997,44 @@ body{
 .up-next-card.active img{
   border:3px solid #ff0000;
 }
+
+
+
+  /* PLAYER CONTAINER */
+  .player-section {
+    position: relative;
+  }
+
+  /* X CLOSE BUTTON */
+  .close-player-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+  }
+
+  .close-player-btn:hover {
+    background: #ff1a1a;
+  }
+
+  .close-player-btn:active {
+    transform: scale(0.92);
+  }

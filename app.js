@@ -14,13 +14,13 @@ const playlists = {
     },
 
     {
-      videoId: "r_InbjC64yQ",
-      title: "From TikTok To Fame _ TYLA, TITOM, YUPPE"
+      videoId: "YR3BxEqegRg",
+      title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
     },
 
     {
-      videoId: "YR3BxEqegRg",
-      title: "From TikTok To Fame, Lasizwe Dambuza, Uncle Waffles, Wian Van Den Berg"
+      videoId: "r_InbjC64yQ",
+      title: "From TikTok To Fame _ TYLA, TITOM, YUPPE"
     },
 
     {
@@ -278,6 +278,78 @@ const playlists = {
    document.getElementById(
      "video-player"
    );
+
+
+   /* =========================================
+   CLOSE PLAYER
+========================================= */
+
+const closePlayerBtn =
+document.getElementById("closePlayerBtn");
+
+let playerHistoryAdded = false;
+
+
+/* CLOSE PLAYER FUNCTION */
+
+function closePlayer() {
+
+// Stop the YouTube video
+player.src = "";
+
+// Hide player and Up Next
+playerSection.classList.add("hidden");
+
+// Reset history state
+playerHistoryAdded = false;
+
+// Return to top of Home page
+window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+});
+}
+
+
+/* X BUTTON */
+
+if (closePlayerBtn) {
+
+closePlayerBtn.addEventListener(
+  "click",
+  closePlayer
+);
+
+}
+
+
+/* ANDROID / BROWSER BACK BUTTON */
+
+window.addEventListener(
+"popstate",
+function () {
+
+  if (
+    !playerSection.classList.contains("hidden")
+  ) {
+
+    player.src = "";
+
+    playerSection.classList.add(
+      "hidden"
+    );
+
+    playerHistoryAdded = false;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+}
+);
  
 
  
@@ -390,6 +462,18 @@ const playlists = {
  function playVideo(videoId, title = "") {
 
   playerSection.classList.remove("hidden");
+
+  /* Create a temporary history entry */
+  if (!playerHistoryAdded) {
+
+    window.history.pushState(
+      { baloTVPlayer: true },
+      "",
+      window.location.href
+    );
+
+    playerHistoryAdded = true;
+  }
 
   updatePlayerQueue();
 
